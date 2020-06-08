@@ -11,16 +11,22 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-  const [text, setText] = useState('Open up App.js to start working on your app!');
+  const [counter, setCounter] = useState(0);
 
-  const handleChangeText = useCallback(() => {
-    setText('Hello World!');
-  }, []);
+  const handleIncrement = useCallback(() => {
+    setCounter(counter + 1);
+  }, [counter]);
+
+  const handleDecrement = useCallback(() => {
+    setCounter(counter - 1);
+  }, [counter]);
 
   return (
     <View style={styles.container}>
-      <Text>{text}</Text>
-      <Button title="Change Text" onPress={handleChangeText} />
+      <Text>Counter</Text>
+      <Button title="-" onPress={handleDecrement} />
+      <Text>{counter}</Text>
+      <Button title="+" onPress={handleIncrement} />
     </View>
   );
 }
