@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import { Button } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
-import Button from './components/Button';
 import Text from './components/Text';
 
 export default function App() {
