@@ -1,14 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import AppContainer from './components/AppContainer';
+import Header from './components/Header';
+import Button from './components/Button';
+import Text from './components/Text';
 
 export default function App() {
   const [counter, setCounter] = useState(0);
@@ -21,12 +15,20 @@ export default function App() {
     setCounter(counter - 1);
   }, [counter]);
 
+  const handleReset = useCallback(() => {
+    setCounter(0);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Counter</Text>
+    <AppContainer>
+      <Header>Counter</Header>
+      <Text>Click "+" to increment, click "-" to decrement</Text>
       <Button title="-" onPress={handleDecrement} />
       <Text>{counter}</Text>
       <Button title="+" onPress={handleIncrement} />
-    </View>
+      <Text />
+      <Text />
+      <Button title="Reset Counter" onPress={handleReset} />
+    </AppContainer>
   );
 }
