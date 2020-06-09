@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Header = styled.Text`
-  font-size: 20px;
+  font-size: 32px;
   font-weight: bold;
   color: #333333;
   margin-bottom: 10px;

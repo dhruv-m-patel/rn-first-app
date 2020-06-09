@@ -3,6 +3,7 @@ import { Button } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import Text from './components/Text';
+import CenteredContent from './components/CenteredContent';
 
 export default function App() {
   const [counter, setCounter] = useState(0);
@@ -24,7 +25,9 @@ export default function App() {
       <Header>Counter</Header>
       <Text>Click "+" to increment, click "-" to decrement</Text>
       <Button title="-" onPress={handleDecrement} />
-      <Text>{counter}</Text>
+      <CenteredContent>
+        <Text centered>{counter}</Text>
+      </CenteredContent>
       <Button title="+" onPress={handleIncrement} />
       <Text />
       <Text />

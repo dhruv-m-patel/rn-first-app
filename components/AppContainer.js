@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
 const AppContainer = styled.View`
-  flex: 1;
+  margin-top: 30px;
+  padding: 10px;
   background-color: #fff;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default AppContainer;
