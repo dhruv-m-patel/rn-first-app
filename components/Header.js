@@ -1,10 +1,17 @@
-import styled from 'styled-components';
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
 
-const Header = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  color: #333333;
-  margin-bottom: 10px;
-`;
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 26,
+    fontWeight: '400',
+    color: '#333333',
+    marginBottom: 10,
+  },
+});
 
-export default Header;
+const CenteredContent = props => (
+  <Text style={styles.header} {...props} />
+);
+
+export default CenteredContent;

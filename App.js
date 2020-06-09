@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <AppContainer>
-      <Header>Counter</Header>
+      <Header>Track Your Goals</Header>
       <Text>Click "+" to increment, click "-" to decrement</Text>
       <Button title="-" onPress={handleDecrement} />
       <Text>{counter}</Text>

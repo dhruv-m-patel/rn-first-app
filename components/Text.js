@@ -1,10 +1,15 @@
-import styled from 'styled-components'
+import React from 'react';
+import { StyleSheet, Text as RNText } from 'react-native';
 
-const Text = styled.Text`
-  color: #000;
-  font-size: 14px;
-  font-weight: normal;
-  margin: 10px 0;
-`;
+const styles = StyleSheet.create({
+  text: {
+    fontWeight: 'normal',
+    margin: '10px 0',
+  },
+});
+
+const Text = props => (
+  <RNText style={styles.text} {...props} />
+);
 
 export default Text;
