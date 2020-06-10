@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
 });
 
 const CenteredContent = props => (
-  <View style={styles.container} {...props} />
+  <View
+    style={styles.container}
+    {...props}
+  />
 );
 
 export default CenteredContent;

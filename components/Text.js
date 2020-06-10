@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text as RnText } from 'react-native';
 
 const styles = StyleSheet.create({
   text: {
+    color: 'black',
+    fontSize: 16,
     fontWeight: 'normal',
-    margin: '10px 0',
   },
 });
 
-const CenteredContent = props => (
-  <Text style={styles.text} {...props} />
+const Text = props => (
+  <RnText style={styles.text} {...props} />
 );
 
-export default CenteredContent;
+export default Text;
 
