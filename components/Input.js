@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const Input = ({ size = 'md', ...props }) => (
+const Input = forwardRef(({ size = 'md', ...props }, ref) => (
   <TextInput
+    ref={ref}
     style={{
       ...size && styles[size],
       ...styles.input,
     }}
     {...props}
   />
-);
+));
 
-export default forwardRef(Input);
+export default Input;

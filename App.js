@@ -8,30 +8,23 @@ import Input from './components/Input';
 import CenteredContent from './components/CenteredContent';
 
 export default function App() {
-  const [goals, setGoals] = useState([]);
-  const [goalInput, setGoalInput] = useState();
+  const [currentGoals, setCurrentGoals] = useState([]);
+  const [input, setInput] = useState('');
   const { width, height } = useWindowDimensions();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
 
   const handleGoalChanged = useCallback((text) => {
-    setGoalInput(text)
+    setInput(text)
   }, []);
 
   const handleAddGoal = useCallback(() => {
-    setGoals([].concat(
-      goals,
-      [{
-        id: goals.length + 1,
-        goal: goalInput,
-      }],
-    ));
-    setGoalInput();
-    console.log('inputRef: ', inputRef);
+    setCurrentGoals([...currentGoals, { id: currentGoals.length + 1, goal: input }]);
+    setInput();
     inputRef.current?.focus();
-  }, [goals, goalInput, inputRef.current]);
+  }, [currentGoals, input, inputRef.current]);
 
   const handleReset = useCallback(() => {
-    setGoals([]);
+    setCurrentGoals([]);
   }, []);
 
   const memoizedInput = useMemo(() => (
@@ -39,18 +32,18 @@ export default function App() {
       ref={inputRef}
       onChangeText={handleGoalChanged}
       onBlur={handleAddGoal}
-      value={goalInput}
+      value={input}
       width={width}
       placeholder="Add New Goal"
       size="lg"
       autoFocus
     />
-  ), [goalInput, handleGoalChanged, handleAddGoal, width, inputRef]);
+  ), [input, handleGoalChanged, handleAddGoal, width, inputRef]);
 
   return (
     <AppContainer>
       <Header>Track Your Goals</Header>
-      {goals.length
+      {currentGoals.length
         ? memoizedInput
         : (
           <CenteredContent height={height - 200} width={width}>
@@ -58,12 +51,12 @@ export default function App() {
           </CenteredContent>
         )
       }
-      {goals.map(({ id, goal }) => (
+      {currentGoals.map(({ id, goal }) => (
         <Card key={id.toString()}>
           <Text>{goal}</Text>
         </Card>
       ))}
-      {!!goals.length && (
+      {!!currentGoals.length && (
         <Button title="Reset Goals" onPress={handleReset} />
       )}
     </AppContainer>
