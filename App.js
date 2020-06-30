@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useMemo } from 'react';
-import { Button, useWindowDimensions } from 'react-native';
+import { View, Button, useWindowDimensions, FlatList } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import Card from './components/Card';
@@ -51,13 +51,19 @@ export default function App() {
           </CenteredContent>
         )
       }
-      {currentGoals.map(({ id, goal }) => (
-        <Card key={id.toString()}>
-          <Text>{goal}</Text>
-        </Card>
-      ))}
       {!!currentGoals.length && (
-        <Button title="Reset Goals" onPress={handleReset} />
+        <View>
+          <FlatList
+            keyExtractor={item => item.id}
+            data={currentGoals}
+            renderItem={({ item }) => (
+              <Card>
+                <Text>{item.goal}</Text>
+              </Card>
+            )}
+          />
+          <Button title="Reset Goals" onPress={handleReset} />
+        </View>
       )}
     </AppContainer>
   );
