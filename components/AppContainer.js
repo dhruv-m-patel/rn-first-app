@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppContainer = props => (
-  <View style={styles.container} {...props} />
+const AppContainer = ({ style: customStyle, ...props }) => (
+  <View style={{ ...styles.container, ...customStyle }} {...props} />
 );
 
 export default AppContainer;

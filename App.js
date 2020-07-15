@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     padding: 10,
+    width: '100%',
+  },
+  container: {
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 });
 
@@ -29,7 +34,7 @@ const GoalInput = ({ onAddGoal }) => {
 
   return (
     <Flex>
-      <Flex.Content width='80%'>
+      <Flex.Content width="80%">
         <TextInput
           placeholder="Course Goal"
           style={styles.goalInput}
@@ -78,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <AppContainer>
+    <AppContainer style={styles.container}>
       <Header>Track Your Goals</Header>
       <GoalInput onAddGoal={handleAddGoal} />
       <GoalList goals={goals} onResetGoals={handleResetGoals} />
