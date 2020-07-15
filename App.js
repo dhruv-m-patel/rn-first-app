@@ -1,34 +1,40 @@
-import React, { useState, useCallback } from 'react';
-import { Button } from 'react-native';
+import React, { useState } from 'react';
+import { Text, StyleSheet } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
-import Text from './components/Text';
+import GoalInput from './components/GoalInput';
+import GoalList from './components/GoalList';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+});
 
 export default function App() {
-  const [counter, setCounter] = useState(0);
+  const [goals, setGoals] = useState([]);
 
-  const handleIncrement = useCallback(() => {
-    setCounter(counter + 1);
-  }, [counter]);
+  const handleAddGoal = (goal) => {
+    setGoals(currentGoals => [
+      ...currentGoals,
+      {
+        id: (currentGoals.length + 1).toString(),
+        goal,
+      },
+    ]);
+  };
 
-  const handleDecrement = useCallback(() => {
-    setCounter(counter - 1);
-  }, [counter]);
-
-  const handleReset = useCallback(() => {
-    setCounter(0);
-  }, []);
+  const handleResetGoals = () => {
+    setGoals([]);
+  };
 
   return (
-    <AppContainer>
-      <Header>Counter</Header>
-      <Text>Click "+" to increment, click "-" to decrement</Text>
-      <Button title="-" onPress={handleDecrement} />
-      <Text>{counter}</Text>
-      <Button title="+" onPress={handleIncrement} />
+    <AppContainer style={styles.container}>
+      <Header>Track Your Goals</Header>
+      <GoalInput onAddGoal={handleAddGoal} />
       <Text />
-      <Text />
-      <Button title="Reset Counter" onPress={handleReset} />
+      <GoalList items={goals} onResetGoals={handleResetGoals} />
     </AppContainer>
   );
 }
