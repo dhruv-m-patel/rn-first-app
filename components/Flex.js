@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   flex: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
 });
 
