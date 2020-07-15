@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, SafeAreaView, FlatList } from 'react-native';
+import { View, SafeAreaView, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import Flex from './components/Flex';
@@ -14,8 +14,7 @@ const styles = StyleSheet.create({
   goalListItem: {
     borderWidth: 1,
     borderColor: '#d3d3d3',
-    marginTop: 10,
-    marginBottom: 5,
+    marginBottom: 10,
     padding: 10,
     width: '100%',
   },
@@ -33,7 +32,7 @@ const GoalInput = ({ onAddGoal }) => {
   };
 
   return (
-    <Flex>
+    <Flex style={{ alignItems: 'space-around' }}>
       <Flex.Content width="80%">
         <TextInput
           placeholder="Course Goal"
@@ -52,21 +51,29 @@ const GoalInput = ({ onAddGoal }) => {
   );
 }
 
-const GoalList = ({ goals, onResetGoals }) => (
-  <View>
-    {goals.map(item => (
-      <View key={item.id} style={styles.goalListItem}>
-        <Text>{item.goal}</Text>
-      </View>
-    ))}
-    {!!goals.length && (
-      <Button
-        onPress={onResetGoals}
-        title="Reset Goals"
-      />
-    )}
-  </View>
-);
+const GoalList = ({ items = [], onResetGoals }) => {
+  return (
+    <View>
+      <SafeAreaView>
+        <FlatList
+          data={items}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.goalListItem}>
+              <Text>{item.goal}</Text>
+            </View>
+          )}
+        />
+      </SafeAreaView>
+      {!!items.length && (
+        <Button
+          onPress={onResetGoals}
+          title="Reset Goals"
+        />
+      )}
+    </View>
+  );
+}
 
 export default function App() {
   const [goals, setGoals] = useState([]);
@@ -74,7 +81,10 @@ export default function App() {
   const handleAddGoal = (goal) => {
     setGoals(currentGoals => [
       ...currentGoals,
-      { id: goals.length + 1, goal },
+      {
+        id: (currentGoals.length + 1).toString(),
+        goal,
+      },
     ]);
   };
 
@@ -86,7 +96,8 @@ export default function App() {
     <AppContainer style={styles.container}>
       <Header>Track Your Goals</Header>
       <GoalInput onAddGoal={handleAddGoal} />
-      <GoalList goals={goals} onResetGoals={handleResetGoals} />
+      <Text />
+      <GoalList items={goals} onResetGoals={handleResetGoals} />
     </AppContainer>
   );
 }
