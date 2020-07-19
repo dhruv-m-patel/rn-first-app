@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import Flex from './Flex';
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-const CenteredContent = props => (
-  <View style={styles.container} {...props} />
+const CenteredContent = ({
+  style: customStyle,
+  children,
+  ...props
+}) => (
+  <Flex
+    style={{ ...customStyle, alignItems: 'center', justifyContent: 'center' }}
+    {...props}
+  >
+    <Flex.Content>
+      {children}
+    </Flex.Content>
+  </Flex>
 );
 
 export default CenteredContent;

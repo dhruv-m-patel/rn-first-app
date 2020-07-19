@@ -9,19 +9,25 @@ const styles = StyleSheet.create({
   },
 });
 
-const Flex = ({ style: customStyle, ...props }) => (
+const Flex = ({
+  style: customStyle,
+  ...props
+}) => (
   <View
     style={{ ...styles.flex, ...customStyle }}
     {...props}
   />
 );
 
-const FlexContent = ({ style: customStyle, width, ...props }) => (
+const FlexContent = ({
+  style: customStyle,
+  width,
+  ...props }) => (
   <View
-    style={{ customStyle, width }}
+    style={{ ...customStyle, width }}
     {...props}
   />
-)
+);
 
 Flex.Content = FlexContent;
 

@@ -4,7 +4,6 @@ import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import List from './components/List';
 import Flex from './components/Flex';
-import CenteredContent from './components/Header';
 
 const styles = StyleSheet.create({
   container: {
@@ -121,15 +120,24 @@ export default function App() {
   return (
     <AppContainer style={styles.container}>
       <Header>Track Your Goals</Header>
-      <Modal visible={shouldShouldAddGoal} animationType="slide">
-        <GoalInput onAddGoal={handleAddGoal} onCancel={handleCancelAddGoal} />
+      <Modal
+        visible={shouldShouldAddGoal}
+        animationType="slide"
+      >
+        <GoalInput
+          onAddGoal={handleAddGoal}
+          onCancel={handleCancelAddGoal}
+        />
       </Modal>
       <Button
         onPress={onAddGoal}
         title="Add Goal"
       />
       <Text />
-      <GoalList items={goals} onResetGoals={handleResetGoals} />
+      <GoalList
+        items={goals}
+        onResetGoals={handleResetGoals}
+      />
     </AppContainer>
   );
 }
