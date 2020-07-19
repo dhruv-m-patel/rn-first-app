@@ -10,8 +10,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const CenteredContent = props => (
-  <Text style={styles.header} {...props} />
+const CenteredContent = ({
+  style: customStyle,
+  ...props
+}) => (
+  <Text
+    style={{ ...styles.header, ...customStyle }}
+    {...props}
+  />
 );
 
 export default CenteredContent;
