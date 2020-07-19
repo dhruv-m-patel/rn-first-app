@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Modal, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
@@ -75,6 +75,7 @@ const GoalInput = ({
   onCancel,
 }) => {
   const [courseGoal, setCourseGoal] = useState('');
+  const inputRef = useRef();
 
   const handleAddGoal = () => {
     onAddGoal(courseGoal);
@@ -85,10 +86,15 @@ const GoalInput = ({
     onCancel();
   };
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <Flex style={styles.goalInputContainer}>
       <Flex.Content>
         <TextInput
+          ref={inputRef}
           placeholder="Course Goal"
           style={styles.goalInput}
           onChangeText={setCourseGoal}
