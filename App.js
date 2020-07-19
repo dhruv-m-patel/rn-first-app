@@ -31,27 +31,49 @@ const styles = StyleSheet.create({
   },
 });
 
-const GoalList = ({ items = [], onResetGoals }) => (
-  <View>
-    <List
-      data={items}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <View style={styles.goalListItem}>
-          <Text>{item.goal}</Text>
-        </View>
-      )}
-    />
-    {!!items.length && (
-      <Button
-        onPress={onResetGoals}
-        title="Reset Goals"
-      />
-    )}
-  </View>
-);
+const GoalList = ({
+  items = [],
+  onResetGoals,
+  onDeleteGoal
+}) => {
+  const handleDeleteGoal = (goalId) => {
+    onDeleteGoal(goalId);
+  };
 
-const GoalInput = ({ onAddGoal, onCancel }) => {
+  return (
+    <View>
+      <List
+        data={items}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <Flex style={styles.goalListItem}>
+            <Flex.Content width="90%">
+              <Text>{item.goal}</Text>
+            </Flex.Content>
+            <Flex.Content width="10%" style={{ padding: 0, margin: -10 }}>
+              <Button
+                title="X"
+                onPress={() => handleDeleteGoal(item.id)}
+                color="red"
+              />
+            </Flex.Content>
+          </Flex>
+        )}
+      />
+      {!!items.length && (
+        <Button
+          onPress={onResetGoals}
+          title="Reset Goals"
+        />
+      )}
+    </View>
+  );
+}
+
+const GoalInput = ({
+  onAddGoal,
+  onCancel,
+}) => {
   const [courseGoal, setCourseGoal] = useState('');
 
   const handleAddGoal = () => {
@@ -75,13 +97,13 @@ const GoalInput = ({ onAddGoal, onCancel }) => {
       </Flex.Content>
       <Flex.Content>
         <Button
-          title="SAVE GOAL"
+          title="Save Goal"
           onPress={handleAddGoal}
         />
       </Flex.Content>
       <Flex.Content>
         <Button
-          title="CANCEL"
+          title="Cancel"
           onPress={handleCancel}
           color="red"
         />
@@ -103,6 +125,10 @@ export default function App() {
       },
     ]);
     setShouldShowAddGoal(false);
+  };
+
+  const handleDeleteGoal = (goalId) => {
+    setGoals(currentGoals => currentGoals.filter(goal => goal.id !== goalId));
   };
 
   const onAddGoal = () => {
@@ -137,6 +163,7 @@ export default function App() {
       <GoalList
         items={goals}
         onResetGoals={handleResetGoals}
+        onDeleteGoal={handleDeleteGoal}
       />
     </AppContainer>
   );
