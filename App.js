@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Modal, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import AppContainer from './components/AppContainer';
 import Header from './components/Header';
 import List from './components/List';
 import Flex from './components/Flex';
+import CenteredContent from './components/Header';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +18,17 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '100%',
   },
+  goalInputContainer: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   goalInput: {
     padding: 10,
     borderBottomColor: '#d3d3d3',
     borderBottomWidth: 1,
-    width: '80%',
+    width: '100%',
   },
 });
 
@@ -45,16 +52,21 @@ const GoalList = ({ items = [], onResetGoals }) => (
   </View>
 );
 
-const GoalInput = ({ onAddGoal }) => {
+const GoalInput = ({ onAddGoal, onCancel }) => {
   const [courseGoal, setCourseGoal] = useState('');
 
   const handleAddGoal = () => {
     onAddGoal(courseGoal);
   };
 
+  const handleCancel = () => {
+    setCourseGoal('');
+    onCancel();
+  };
+
   return (
-    <Flex style={{ alignItems: 'space-around' }}>
-      <Flex.Content width="80%">
+    <Flex style={styles.goalInputContainer}>
+      <Flex.Content>
         <TextInput
           placeholder="Course Goal"
           style={styles.goalInput}
@@ -62,10 +74,17 @@ const GoalInput = ({ onAddGoal }) => {
           value={courseGoal}
         />
       </Flex.Content>
-      <Flex.Content width='20%'>
+      <Flex.Content>
         <Button
-          title="ADD"
+          title="SAVE GOAL"
           onPress={handleAddGoal}
+        />
+      </Flex.Content>
+      <Flex.Content>
+        <Button
+          title="CANCEL"
+          onPress={handleCancel}
+          color="red"
         />
       </Flex.Content>
     </Flex>
@@ -74,6 +93,7 @@ const GoalInput = ({ onAddGoal }) => {
 
 export default function App() {
   const [goals, setGoals] = useState([]);
+  const [shouldShouldAddGoal, setShouldShowAddGoal] = useState(false);
 
   const handleAddGoal = (goal) => {
     setGoals(currentGoals => [
@@ -83,6 +103,15 @@ export default function App() {
         goal,
       },
     ]);
+    setShouldShowAddGoal(false);
+  };
+
+  const onAddGoal = () => {
+    setShouldShowAddGoal(true);
+  };
+
+  const handleCancelAddGoal = () => {
+    setShouldShowAddGoal(false);
   };
 
   const handleResetGoals = () => {
@@ -92,7 +121,13 @@ export default function App() {
   return (
     <AppContainer style={styles.container}>
       <Header>Track Your Goals</Header>
-      <GoalInput onAddGoal={handleAddGoal} />
+      <Modal visible={shouldShouldAddGoal} animationType="slide">
+        <GoalInput onAddGoal={handleAddGoal} onCancel={handleCancelAddGoal} />
+      </Modal>
+      <Button
+        onPress={onAddGoal}
+        title="Add Goal"
+      />
       <Text />
       <GoalList items={goals} onResetGoals={handleResetGoals} />
     </AppContainer>
