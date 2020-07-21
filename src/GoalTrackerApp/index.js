@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Text, Button, StyleSheet } from 'react-native';
-import AppContainer from '../../components/AppContainer';
-import Header from '../../components/Header';
+import AppContainer from '../common/components/AppContainer';
+import Header from '../common/components/Header';
 import GoalInput from './GoalInput';
 import GoalList from './GoalList';
 

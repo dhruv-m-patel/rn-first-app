@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Text } from 'react-native';
-import CenteredContent from './components/CenteredContent';
-import GoalTrackerApp from './Apps/GoalTrackerApp';
-import GuessTheNumberApp from './Apps/GuessTheNumberApp';
+import CenteredContent from './src/shared/components/CenteredContent';
+import GoalTrackerApp from './src/GoalTrackerApp';
+import GuessTheNumberApp from './src/GuessTheNumberApp';
 
 const APPS = {
   goalTracker: GoalTrackerApp,
