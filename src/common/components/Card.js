@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   card: {
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: 'white',
     marginVertical: 10,
+    padding: 10,
   },
 });
 
