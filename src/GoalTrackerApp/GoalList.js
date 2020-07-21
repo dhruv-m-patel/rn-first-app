@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import List from '../../components/List';
-import Flex from '../../components/Flex';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import List from '../common/components/List';
+import Flex from '../common/components/Flex';
 
 const styles = StyleSheet.create({
   goalListItem: {

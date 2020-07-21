@@ -1,7 +1,7 @@
 export default {
   color: {
     primary: 'skyblue',
-    accent: 'pink',
+    accent: 'red',
   },
   baseTextColor: '#333',
   baseFontSize: 16,

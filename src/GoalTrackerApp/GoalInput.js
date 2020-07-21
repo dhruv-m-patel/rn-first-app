@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TextInput, Button, StyleSheet } from 'react-native';
-import Flex from '../../components/Flex';
+import Flex from '../common/components/Flex';
 
 const styles = StyleSheet.create({
   goalInputContainer: {

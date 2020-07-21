@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Text } from 'react-native';
-import CenteredContent from './src/shared/components/CenteredContent';
+import CenteredContent from './src/common/components/CenteredContent';
 import GoalTrackerApp from './src/GoalTrackerApp';
 import GuessTheNumberApp from './src/GuessTheNumberApp';
 

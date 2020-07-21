@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.color.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
   },
   title: {
     fontSize: theme.baseFontSize + 4,
