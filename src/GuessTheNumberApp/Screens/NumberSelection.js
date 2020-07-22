@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Button, TextInput, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AppHeader from '../AppHeader';
 import theme from '../theme';
 import Card from '../../common/components/Card';
