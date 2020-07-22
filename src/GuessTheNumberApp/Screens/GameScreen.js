@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const StartGame = ({
+const GameScreen = ({
   selectedNumber,
   onGameOver,
 }) => {
@@ -98,4 +98,4 @@ const StartGame = ({
   );
 }
 
-export default StartGame;
+export default GameScreen;

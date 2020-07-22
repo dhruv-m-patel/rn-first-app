@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import NumberSelection from './Screens/NumberSelection';
-import StartGame from './Screens/StartGame';
+import GameScreen from './Screens/GameScreen';
 import GameOver from './Screens/GameOver';
 
 const styles = StyleSheet.create({
@@ -53,7 +53,7 @@ export default function GuessTheNumberApp() {
           />
         )
         : (
-          <StartGame
+          <GameScreen
             selectedNumber={selectedNumber}
             onGameOver={handleGameOver}
           />
