@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
   selectedNumber: {
     fontSize: 18,
     fontWeight: 'bold',
+    borderColor: theme.color.accent,
+    color: theme.color.accent,
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
   },
 });
 

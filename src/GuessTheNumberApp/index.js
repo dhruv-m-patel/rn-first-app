@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import NumberSelection from './Screens/NumberSelection';
+import StartGame from './Screens/StartGame';
+import GameOver from './Screens/GameOver';
 
 const styles = StyleSheet.create({
   gameContainer: {
@@ -10,8 +12,10 @@ const styles = StyleSheet.create({
 
 export default function GuessTheNumberApp() {
   const [selectedNumber, setSelectedNumber] = useState(undefined);
+  const [endGame, setEndGame] = useState(false);
+  const [totalRounds, setTotalRounds] = useState(0);
 
-  const handleNumberSelection = (num) => {
+  const handleNumberSelection = num => {
     setSelectedNumber(num);
   };
 
@@ -19,12 +23,42 @@ export default function GuessTheNumberApp() {
     setSelectedNumber(undefined);
   };
 
+  const handleGameOver = rounds => {
+    setTotalRounds(rounds);
+    setEndGame(true);
+  };
+
+  const handlePlayAgain = () => {
+    setSelectedNumber(undefined);
+    setEndGame(false);
+    setTotalRounds(0);
+  };
+
+  if (endGame && totalRounds) {
+    return (
+      <GameOver
+        roundsPlayed={totalRounds}
+        onPlayAgain={handlePlayAgain}
+      />
+    );
+  }
+
   return (
     <View style={styles.gameContainer}>
-      <NumberSelection
-        onNumberSelected={setSelectedNumber}
-        onReset={handleResetNumber}
-      />
+      {!selectedNumber
+        ? (
+          <NumberSelection
+            onSelectNumber={handleNumberSelection}
+            onResetNumber={handleResetNumber}
+          />
+        )
+        : (
+          <StartGame
+            selectedNumber={selectedNumber}
+            onGameOver={handleGameOver}
+          />
+        )
+      }
     </View>
   );
 }
