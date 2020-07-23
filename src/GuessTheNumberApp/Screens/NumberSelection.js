@@ -5,6 +5,7 @@ import theme from '../../common/theme';
 import Card from '../../common/components/Card';
 import Input from '../../common/components/Input';
 import Text from '../../common/components/Text';
+import HighlightNumber from '../HighlightNumber';
 
 const styles = StyleSheet.create({
   screen: {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginVertical: 20,
+    marginBottom: 10,
   },
   inputContainer: {
     textAlign: 'center',
@@ -31,14 +32,7 @@ const styles = StyleSheet.create({
   numberSelectionCard: {
     width: 200,
     maxWidth: '50%',
-  },
-  selectedNumber: {
-    fontSize: 18,
-    borderColor: theme.color.accent,
-    color: theme.color.accent,
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
+    marginTop: 20,
   },
 });
 
@@ -103,6 +97,7 @@ const NumberSelection = ({
               <View style={styles.button}>
                 <Button
                   title="Reset"
+                  color={theme.color.accent}
                   onPress={handleResetNumber}
                 />
               </View>
@@ -118,8 +113,7 @@ const NumberSelection = ({
           {confirmed && !!selectedNumber && (
             <Card style={styles.numberSelectionCard}>
               <Text>You chose</Text>
-              <Text />
-              <Text bold style={styles.selectedNumber}>{selectedNumber}</Text>
+              <HighlightNumber number={selectedNumber} />
               <Button title="Start Game" onPress={handleSelectNumber} />
             </Card>
           )}

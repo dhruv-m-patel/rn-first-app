@@ -8,16 +8,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    width: '45%',
     marginHorizontal: 10,
   },
 });
 
 const ActionButton = ({
+  width = '45%',
   style: customStyle,
   ...props
 }) => (
   <Button
+    width={width}
     style={{ ...styles.button, ...customStyle }}
     {...props}
   />

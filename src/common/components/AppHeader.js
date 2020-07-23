@@ -6,8 +6,8 @@ import Text from './Text';
 const styles = StyleSheet.create({
   appHeader: {
     width: '100%',
-    height: 90,
-    paddingTop: 30,
+    height: 100,
+    paddingTop: 35,
     backgroundColor: theme.color.primary,
     justifyContent: 'center',
     alignItems: 'center',

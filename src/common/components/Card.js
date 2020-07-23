@@ -19,9 +19,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: 'white',
     marginVertical: 10,
-    padding: 10,
-    height: 'auto',
-    maxHeight: '80%',
+    padding: 15,
   },
 });
 

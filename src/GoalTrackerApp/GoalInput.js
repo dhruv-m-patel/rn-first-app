@@ -1,20 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
 import Flex from '../common/components/Flex';
 
 const styles = StyleSheet.create({
   goalInputContainer: {
     flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
   },
   goalInput: {
+    width: '100%',
     padding: 10,
     borderBottomColor: '#d3d3d3',
     borderBottomWidth: 1,
-    width: '100%',
   },
+  buttonContainer: {
+    marginTop: 10,
+  }
 });
 
 const GoalInput = ({
@@ -49,17 +52,21 @@ const GoalInput = ({
         />
       </Flex.Content>
       <Flex.Content>
-        <Button
-          title="Save Goal"
-          onPress={handleAddGoal}
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Save Goal"
+            onPress={handleAddGoal}
+          />
+        </View>
       </Flex.Content>
       <Flex.Content>
-        <Button
-          title="Cancel"
-          onPress={handleCancel}
-          color="red"
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Cancel"
+            onPress={handleCancel}
+            color="red"
+          />
+        </View>
       </Flex.Content>
     </Flex>
   );

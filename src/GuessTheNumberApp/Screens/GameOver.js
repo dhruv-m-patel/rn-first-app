@@ -5,17 +5,31 @@ import Card from '../../common/components/Card';
 import AppHeader from '../../common/components/AppHeader';
 import theme from '../../common/theme';
 import Text from '../../common/components/Text';
+import HighlightNumber from '../HighlightNumber';
 
 const styles = StyleSheet.create({
   screen: {
     padding: 10,
     alignItems: 'center',
   },
+  card: {
+    textAlign: 'center',
+  },
   title: {
     color: theme.color.accent,
     fontSize: 22,
     fontWeight: 'bold',
   },
+  line1: {
+    marginTop: 15,
+  },
+  line3: {
+    marginBottom: 15,
+  },
+  actions: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 const GameOver = ({
@@ -25,16 +39,20 @@ const GameOver = ({
   <View>
     <AppHeader title="Game Over!" />
     <View style={styles.screen}>
-      <Card style={{ textAlign: 'center' }}>
-        <Text />
+      <Card style={styles.card}>
         <Text style={styles.title}>Congratulations!</Text>
-        <Text />
-        <Text />
-        <Text>You played total {roundsPlayed} rounds to finish the game!</Text>
-        <Text />
-        <Text />
-        <Actions style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Actions.Button title="Play Again" color={theme.color.accent} onPress={onPlayAgain} />
+        <Text style={styles.line1}>You played</Text>
+        <HighlightNumber
+          number={roundsPlayed}
+          color={theme.baseTextColor}
+        />
+        <Text style={styles.line3}>rounds to finish the game!</Text>
+        <Actions style={styles.actions}>
+          <Actions.Button
+            title="Play Again"
+            color={theme.color.primary}
+            onPress={onPlayAgain}
+          />
         </Actions>
       </Card>
     </View>
