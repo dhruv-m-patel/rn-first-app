@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, Text, Button, StyleSheet } from 'react-native';
+import { Modal, Text, Button, SafeAreaView } from 'react-native';
 import AppContainer from '../common/components/AppContainer';
-import Header from '../common/components/Header';
 import GoalInput from './GoalInput';
 import GoalList from './GoalList';
-
-const styles = StyleSheet.create({
-  container: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-});
+import AppHeader from '../common/components/AppHeader';
+import Card from '../common/components/Card';
 
 export default function GoalTrackerApp() {
   const [goals, setGoals] = useState([]);
@@ -44,27 +38,31 @@ export default function GoalTrackerApp() {
   };
 
   return (
-    <AppContainer style={styles.container}>
-      <Header>Track Your Goals</Header>
-      <Modal
-        visible={shouldShouldAddGoal}
-        animationType="slide"
-      >
-        <GoalInput
-          onAddGoal={handleAddGoal}
-          onCancel={handleCancelAddGoal}
+    <AppContainer>
+      <AppHeader title="Track Your Goals" />
+      <Card>
+        <Modal
+          visible={shouldShouldAddGoal}
+          animationType="slide"
+        >
+          <GoalInput
+            onAddGoal={handleAddGoal}
+            onCancel={handleCancelAddGoal}
+          />
+        </Modal>
+        <Button
+          onPress={onAddGoal}
+          title="Add Goal"
         />
-      </Modal>
-      <Button
-        onPress={onAddGoal}
-        title="Add Goal"
-      />
-      <Text />
-      <GoalList
-        items={goals}
-        onResetGoals={handleResetGoals}
-        onDeleteGoal={handleDeleteGoal}
-      />
+        <Text />
+        <SafeAreaView>
+          <GoalList
+            items={goals}
+            onResetGoals={handleResetGoals}
+            onDeleteGoal={handleDeleteGoal}
+          />
+        </SafeAreaView>
+      </Card>
     </AppContainer>
   );
 }

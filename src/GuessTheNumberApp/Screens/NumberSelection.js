@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import AppHeader from '../AppHeader';
-import theme from '../theme';
+import AppHeader from '../../common/components/AppHeader';
+import theme from '../../common/theme';
 import Card from '../../common/components/Card';
 import Input from '../../common/components/Input';
 
