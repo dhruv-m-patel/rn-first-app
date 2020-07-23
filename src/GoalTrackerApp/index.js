@@ -41,7 +41,7 @@ export default function GoalTrackerApp() {
   return (
     <AppContainer>
       <AppHeader title="Track Your Goals" />
-      <Card>
+      <Card style={{ maxHeight: '80%' }}>
         <Modal
           visible={shouldShouldAddGoal}
           animationType="slide"

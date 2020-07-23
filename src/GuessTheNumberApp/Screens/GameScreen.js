@@ -5,6 +5,7 @@ import Card from '../../common/components/Card';
 import AppHeader from '../../common/components/AppHeader';
 import theme from '../../common/theme';
 import Text from '../../common/components/Text';
+import HighlightNumber from '../HighlightNumber';
 
 function generateRandomNumberGuess(min, max, exclude) {
   const minimum = Math.ceil(min);
@@ -18,22 +19,6 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
   },
-  selectedNumber: {
-    fontSize: 18,
-    borderColor: theme.color.accent,
-    color: theme.color.accent,
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-  },
-  systemGuess: {
-    fontSize: 18,
-    borderColor: theme.color.primary,
-    color: theme.color.primary,
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-  }
 });
 
 const GameScreen = ({
@@ -72,25 +57,28 @@ const GameScreen = ({
       <AppHeader title="Guess The Number!" />
       <View style={styles.screen}>
         <Card>
-          <Text>Your Guess</Text>
-          <Text />
-          <Text bold style={styles.selectedNumber}>{selectedNumber}</Text>
-          <Text />
-          <Text />
-          <Text>Would system's next guess be</Text>
-          <Text>lower or greater?</Text>
-          <Text />
+          <Text bold>Your Guess</Text>
+          <HighlightNumber number={selectedNumber} />
+          <Text style={{ fontSize: 16, marginTop: 15 }}>Would system's next guess be</Text>
+          <Text style={{ fontSize: 16, marginBottom: 20 }}>lower or greater?</Text>
           <Actions>
-            <Actions.Button title="Lower" onPress={() => { handleGenerateNextGuess('lower'); }} />
-            <Actions.Button title="Greater" onPress={() => { handleGenerateNextGuess('greater'); }} />
+            <Actions.Button
+              title="Lower"
+              onPress={() => { handleGenerateNextGuess('lower'); }}
+            />
+            <Actions.Button
+              title="Greater"
+              onPress={() => { handleGenerateNextGuess('greater'); }}
+            />
           </Actions>
         </Card>
         <Text />
         <Card style={{ width: '50%' }}>
-          <Text>System's Guess</Text>
-          <Text />
-          <Text bold style={styles.systemGuess}>{systemGuess}</Text>
-          <Text />
+          <Text bold>System's Guess</Text>
+          <HighlightNumber
+            number={systemGuess}
+            color={theme.baseTextColor }
+          />
         </Card>
       </View>
     </View>
