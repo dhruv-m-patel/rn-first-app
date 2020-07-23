@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import Actions from '../../common/components/Actions';
 import Card from '../../common/components/Card';
 import AppHeader from '../../common/components/AppHeader';
 import theme from '../../common/theme';
+import Text from '../../common/components/Text';
 
 function generateRandomNumberGuess(min, max, exclude) {
   const minimum = Math.ceil(min);
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
   },
   selectedNumber: {
     fontSize: 18,
-    fontWeight: 'bold',
     borderColor: theme.color.accent,
     color: theme.color.accent,
     borderWidth: 1,
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   },
   systemGuess: {
     fontSize: 18,
-    fontWeight: 'bold',
     borderColor: theme.color.primary,
     color: theme.color.primary,
     borderWidth: 1,
@@ -75,7 +74,7 @@ const GameScreen = ({
         <Card>
           <Text>Your Guess</Text>
           <Text />
-          <Text style={styles.selectedNumber}>{selectedNumber}</Text>
+          <Text bold style={styles.selectedNumber}>{selectedNumber}</Text>
           <Text />
           <Text />
           <Text>Would system's next guess be</Text>
@@ -90,7 +89,7 @@ const GameScreen = ({
         <Card style={{ width: '50%' }}>
           <Text>System's Guess</Text>
           <Text />
-          <Text style={styles.systemGuess}>{systemGuess}</Text>
+          <Text bold style={styles.systemGuess}>{systemGuess}</Text>
           <Text />
         </Card>
       </View>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import theme from '../theme';
+import Text from './Text';
 
 const styles = StyleSheet.create({
   appHeader: {
@@ -13,7 +14,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.baseFontSize + 4,
-    fontWeight: 'bold',
     color: theme.baseTextColor,
   },
 });
@@ -24,7 +24,7 @@ const AppHeader = ({
   ...props
 }) => (
   <View style={{ ...styles.appHeader, ...customStyle }} {...props}>
-    <Text style={styles.title}>{title}</Text>
+    <Text bold style={styles.title}>{title}</Text>
   </View>
 );
 

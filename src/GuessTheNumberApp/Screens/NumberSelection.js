@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Button, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AppHeader from '../../common/components/AppHeader';
 import theme from '../../common/theme';
 import Card from '../../common/components/Card';
 import Input from '../../common/components/Input';
+import Text from '../../common/components/Text';
 
 const styles = StyleSheet.create({
   screen: {
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
   },
   selectedNumber: {
     fontSize: 18,
-    fontWeight: 'bold',
     borderColor: theme.color.accent,
     color: theme.color.accent,
     borderWidth: 1,
@@ -90,7 +90,7 @@ const NumberSelection = ({
         <AppHeader title="Start a New Game!" />
         <View style={styles.screen}>
           <Card>
-            <Text style={styles.title}>Select a Number</Text>
+            <Text bold style={styles.title}>Select a Number</Text>
             <Input
               ref={inputRef}
               style={styles.inputContainer}
@@ -119,7 +119,7 @@ const NumberSelection = ({
             <Card style={styles.numberSelectionCard}>
               <Text>You chose</Text>
               <Text />
-              <Text style={styles.selectedNumber}>{selectedNumber}</Text>
+              <Text bold style={styles.selectedNumber}>{selectedNumber}</Text>
               <Button title="Start Game" onPress={handleSelectNumber} />
             </Card>
           )}

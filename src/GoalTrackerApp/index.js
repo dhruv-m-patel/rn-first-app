@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, Text, Button, SafeAreaView } from 'react-native';
+import { Modal, Button, SafeAreaView } from 'react-native';
 import AppContainer from '../common/components/AppContainer';
 import GoalInput from './GoalInput';
 import GoalList from './GoalList';
 import AppHeader from '../common/components/AppHeader';
 import Card from '../common/components/Card';
+import Text from '../common/components/Text';
 
 export default function GoalTrackerApp() {
   const [goals, setGoals] = useState([]);
