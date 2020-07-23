@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Actions from '../../common/components/Actions';
 import Card from '../../common/components/Card';
-import AppHeader from '../AppHeader';
-import theme from '../theme';
+import AppHeader from '../../common/components/AppHeader';
+import theme from '../../common/theme';
+import Text from '../../common/components/Text';
 
 const styles = StyleSheet.create({
   screen: {

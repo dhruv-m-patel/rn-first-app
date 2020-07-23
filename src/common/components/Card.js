@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginVertical: 10,
     padding: 10,
+    height: 'auto',
+    maxHeight: '80%',
   },
 });
 
