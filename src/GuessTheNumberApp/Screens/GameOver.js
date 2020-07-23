@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import Actions from '../../common/components/Actions';
 import Card from '../../common/components/Card';
 import AppHeader from '../../common/components/AppHeader';
@@ -29,6 +29,27 @@ const styles = StyleSheet.create({
   actions: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 300,
+    borderWidth: 2,
+    borderColor: '#eee',
+    overflow: 'hidden',
+    shadowColor: '#ddd',
+    shadowOffset: {
+      height: 2,
+      width: 0,
+    },
+    shadowRadius: 6,
+    shadowOpacity: 0.6,
+    elevation: 5,
+    backgroundColor: 'white',
+  },
+  successImage: {
+    height: 300,
+    width: '100%',
   }
 });
 
@@ -39,6 +60,13 @@ const GameOver = ({
   <View>
     <AppHeader title="Game Over!" />
     <View style={styles.screen}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../../../assets/success.png')}
+          style={styles.successImage}
+          resizeMode="cover"
+        />
+      </View>
       <Card style={styles.card}>
         <Text style={styles.title}>Congratulations!</Text>
         <Text style={styles.line1}>You played</Text>
