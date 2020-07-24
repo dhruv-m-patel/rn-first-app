@@ -5,21 +5,20 @@ import AppHeader from '../../common/components/AppHeader';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 });
 
 const Screen = ({
-  title,
   style: customStyle,
-  children,
-  ...props,
+  ...props
 }) => (
-  <View style={styles.screen} {...props}>
-    <AppHeader title={title} />
-    {children}
-  </View>
+  <View
+    style={{ ...styles.screen, ...customStyle }}
+    {...props}
+  />
 );
 
 export default Screen;
