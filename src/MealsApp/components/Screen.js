@@ -5,7 +5,7 @@ import AppHeader from '../../common/components/AppHeader';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 10,
     paddingHorizontal: 15,
   },

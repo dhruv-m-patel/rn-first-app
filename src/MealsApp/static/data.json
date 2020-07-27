@@ -1,0 +1,8 @@
+{
+  "categories": [
+    { "id": "c1", "name": "Italian" },
+    { "id": "c2", "name": "Indian" },
+    { "id": "c3", "name": "Fusion" },
+    { "id": "c4", "name": "Quick n Easy" }
+  ]
+}
