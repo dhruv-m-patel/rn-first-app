@@ -5,7 +5,6 @@ import { default as CommonCard } from '../../common/components/Card';
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    textAlign: 'right',
   },
   category: {
     marginHorizontal: 10,

@@ -6,6 +6,10 @@ import * as Data from '../static/data.json';
 import Card from '../components/Card';
 
 const styles = StyleSheet.create({
+  card: {
+    alignItems: 'flex-end',
+    textAlign: 'right',
+  },
   category: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -25,7 +29,7 @@ const CategoryCard = ({
         },
       });
     }}
-    style={{ backgroundColor: category.backgroundColor }}
+    style={{ ...styles.card, backgroundColor: category.backgroundColor  }}
   >
     <View>
       <Text style={{ ...styles.category, color: category.color }}>{category.name}</Text>
