@@ -1,17 +1,37 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
-import theme from '../../common/theme';
-import { Platform } from 'react-native';
+import Card from '../components/Card';
 
 const styles = StyleSheet.create({
   category: {
-    width: '50%',
-    height: 150,
+    fontSize: 18,
+    fontWeight: 'bold',
   }
 })
+
+const CategoryCard = ({
+  navigation,
+  category,
+ }) => (
+  <Card
+    onPress={() => {
+      navigation.navigate({
+        routeName: 'Meals',
+        params: {
+          categoryId: category.id,
+        },
+      });
+    }}
+    style={{ backgroundColor: category.backgroundColor }}
+  >
+    <View>
+      <Text style={{ ...styles.category, color: category.color }}>{category.name}</Text>
+    </View>
+  </Card>
+);
 
 const CategoriesScreen = ({
   navigation,
@@ -21,27 +41,15 @@ const CategoriesScreen = ({
       data={Data.categories}
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity
-          style={styles.category}
-          onPress={() => { navigation.navigate({ routeName: 'Meals' }) }}
-        >
-          <View>
-            <Text>{item.name}</Text>
-          </View>
-        </TouchableOpacity>
+        <CategoryCard category={item} navigation={navigation} />
       )}
       numColumns={2}
     />
-    <Button title="Go to Meals" onPress={() => { navigation.navigate({ routeName: 'Meals' }) }} />
   </Screen>
 );
 
 CategoriesScreen.navigationOptions = {
   headerTitle: 'Meal Categories',
-  headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? theme.color.primary : undefined,
-  },
-  backgroundTintColor: Platform.OS === 'android' ? theme.baseTextColor : undefined,
 }
 
 export default CategoriesScreen;

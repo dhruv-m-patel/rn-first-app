@@ -1,8 +1,8 @@
 {
   "categories": [
-    { "id": "c1", "name": "Italian" },
-    { "id": "c2", "name": "Indian" },
-    { "id": "c3", "name": "Fusion" },
-    { "id": "c4", "name": "Quick n Easy" }
+    { "id": "c1", "name": "Italian", "backgroundColor": "blue", "color": "white" },
+    { "id": "c2", "name": "Indian", "backgroundColor": "pink", "color": "black" },
+    { "id": "c3", "name": "Fusion", "backgroundColor": "green", "color": "white" },
+    { "id": "c4", "name": "Quick n Easy", "backgroundColor": "yellow", "color": "black" }
   ]
 }
