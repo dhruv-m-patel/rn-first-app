@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import AppHeader from '../../common/components/AppHeader';
 
 const styles = StyleSheet.create({
   screen: {

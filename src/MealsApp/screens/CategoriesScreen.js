@@ -32,7 +32,12 @@ const CategoryCard = ({
     style={{ ...styles.card, backgroundColor: category.backgroundColor  }}
   >
     <View>
-      <Text bold style={{ ...styles.category, color: category.color }}>{category.name}</Text>
+      <Text
+        bold
+        style={{ ...styles.category, color: category.color }}
+      >
+        {category.name}
+      </Text>
     </View>
   </Card>
 );

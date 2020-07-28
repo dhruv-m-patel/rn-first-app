@@ -24,7 +24,7 @@ const screenNavigationOptions = {
       backgroundColor: Platform.OS === 'android' ? theme.color.primary : undefined,
     },
     backgroundTintColor: Platform.OS === 'android' ? theme.baseTextColor : undefined,
-  }
+  },
 };
 
 const mainNavigator = createStackNavigator(screenNavigation, screenNavigationOptions);

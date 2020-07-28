@@ -1,12 +1,23 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import Screen from '../components/Screen';
+import MealsList from '../components/MealsList';
 
-const FavoritesScreen = () => (
+const FavoritesScreen = ({
+  favoriteMeals,
+  navigation,
+}) => (
   <Screen>
-    <View>
-      <Text>Favorites</Text>
-    </View>
+    <MealsList
+      meals={favoriteMeals}
+      onPress={mealId => {
+        navigation.navigate({
+          routeName: 'Recipe',
+          params: {
+            mealId,
+          },
+        });
+      }}
+    />
   </Screen>
 );
 
