@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Text from '../../common/components/Text';
 
 const styles = StyleSheet.create({
   tag: {
@@ -22,7 +23,7 @@ const MealTag = ({
   text
 }) => (
   <View style={styles.tag}>
-    <Text style={styles.tagContent}>{text}</Text>
+    <Text bold style={styles.tagContent}>{text}</Text>
   </View>
 );
 

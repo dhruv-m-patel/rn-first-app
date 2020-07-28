@@ -1,9 +1,10 @@
 import React from 'react';
-import { FlatList, View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { FlatList, View, ImageBackground, StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import Card from '../components/Card';
 import MealTag from '../components/MealTag';
+import Text from '../../common/components/Text';
 
 const styles = StyleSheet.create({
   mealCard: {

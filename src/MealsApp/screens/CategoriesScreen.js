@@ -1,9 +1,10 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import Card from '../components/Card';
+import Text from '../../common/components/Text';
 
 const styles = StyleSheet.create({
   card: {
@@ -11,8 +12,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   category: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
   }
 })
 
@@ -32,7 +32,7 @@ const CategoryCard = ({
     style={{ ...styles.card, backgroundColor: category.backgroundColor  }}
   >
     <View>
-      <Text style={{ ...styles.category, color: category.color }}>{category.name}</Text>
+      <Text bold style={{ ...styles.category, color: category.color }}>{category.name}</Text>
     </View>
   </Card>
 );
