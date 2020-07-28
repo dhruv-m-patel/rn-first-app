@@ -1,9 +1,13 @@
 import React from 'react';
 import { Image, View, ScrollView, StyleSheet } from 'react-native';
+import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { Ionicons } from '@expo/vector-icons';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import MealTag from '../components/MealTag';
 import Text from '../../common/components/Text';
+import theme from '../../common/theme';
+import { Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   row: {
@@ -25,6 +29,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+const FavoriteThisRecipeButton = props => (
+  <HeaderButton
+    IconComponent={Ionicons}
+    iconSize={23}
+    color={Platform.OS === 'android' ? theme.color.primary : undefined}
+    {...props}
+  />
+);
+
+
 const RecipeScreen = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
   const recipe = Data.meals.find(m => m.id === mealId);
@@ -53,16 +68,13 @@ const RecipeScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}>Time: {recipe.duration}m</Text>
+          <Text style={styles.recipeDetailText}><Text bold>Time:</Text> {recipe.duration}m</Text>
         </View>
         <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}>Complexity: {recipe.complexity}</Text>
+          <Text style={styles.recipeDetailText}><Text bold>Complexity:</Text> {recipe.complexity}</Text>
         </View>
         <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}>Affordability: {recipe.affordability}</Text>
-        </View>
-        <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}>Affordability: {recipe.affordability}</Text>
+          <Text style={styles.recipeDetailText}><Text bold>Affordability:</Text> {recipe.affordability}</Text>
         </View>
         <View style={styles.recipeDetailRow}>
           <Text bold>Ingredients</Text>
@@ -83,11 +95,19 @@ const RecipeScreen = ({ navigation }) => {
 
 RecipeScreen.navigationOptions = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
-  console.log('mealId: ', mealId);
   const recipe = Data.meals.find(m => m.id === mealId);
 
   return {
     headerTitle: recipe.title,
+    headerRight: ()  => (
+      <HeaderButtons HeaderButtonComponent={FavoriteThisRecipeButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => { console.log('Favorite button clicked') }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 
