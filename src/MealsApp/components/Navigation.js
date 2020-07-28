@@ -29,6 +29,11 @@ const screenNavigationOptions = {
 
 const mainNavigator = createStackNavigator(screenNavigation, screenNavigationOptions);
 
+const favoritesNavigation = createStackNavigator({
+  Favorites: FavoritesScreen,
+  Recipe: RecipeScreen,
+}, screenNavigationOptions);
+
 const tabNavigation = {
   Meals: {
     screen: mainNavigator,
@@ -44,7 +49,7 @@ const tabNavigation = {
     },
   },
   Favorites: {
-    screen: FavoritesScreen,
+    screen: favoritesNavigation,
     navigationOptions: {
       tabBarLabel: 'My Favorites',
       tabBarIcon: tabInfo => (
