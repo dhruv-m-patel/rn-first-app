@@ -21,14 +21,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     color: 'white',
     width: '95%',
+    height: '100%',
     opacity: 0.8,
+    padding: 10,
   },
   row: {
     flexDirection: 'row',
   },
   mealDetails: {
     width: '100%',
-    marginTop: 10,
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   mealTags: {
-    height: 30,
+    minHeight: 20,
   }
 });
 
@@ -123,7 +125,7 @@ MealsScreen.navigationOptions = ({ navigation }) => {
   const categoryInContext = Data.categories.find(c => c.id === categoryId);
 
   return {
-    headerTitle: categoryInContext.name,
+    headerTitle: `${categoryInContext.name} Meals`,
   };
 };
 
