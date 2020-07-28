@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,13 +12,6 @@ import FiltersScreen from '../screens/FiltersScreen';
 import RecipeScreen from '../screens/RecipeScreen';
 import theme from '../../common/theme';
 
-const screenNavigation = {
-  Categories: CategoriesScreen,
-  Meals: MealsScreen,
-  Filters: FiltersScreen,
-  Recipe: RecipeScreen
-};
-
 const screenNavigationOptions = {
   defaultNavigationOptions: {
     headerStyle: {
@@ -27,14 +21,22 @@ const screenNavigationOptions = {
   },
 };
 
-const mainNavigator = createStackNavigator(screenNavigation, screenNavigationOptions);
+const screenNavigation = {
+  Categories: CategoriesScreen,
+  Meals: MealsScreen,
+  Recipe: RecipeScreen
+};
 
-const favoritesNavigation = createStackNavigator({
+const favoritesScreens = {
   Favorites: FavoritesScreen,
   Recipe: RecipeScreen,
-}, screenNavigationOptions);
+};
 
-const tabNavigation = {
+const mainNavigator = createStackNavigator(screenNavigation, screenNavigationOptions);
+
+const favoritesNavigation = createStackNavigator(favoritesScreens, screenNavigationOptions);
+
+const tabNavigationScreens = {
   Meals: {
     screen: mainNavigator,
     navigationOptions: {
@@ -69,6 +71,15 @@ const tabNavigationOptions = {
   },
 };
 
-const consolidatedNavigation = createBottomTabNavigator(tabNavigation, tabNavigationOptions);
+const consolidatedNavigation = createBottomTabNavigator(tabNavigationScreens, tabNavigationOptions);
 
-export default createAppContainer(consolidatedNavigation);
+const filtersNavigator = createStackNavigator({
+  Filters: FiltersScreen,
+});
+
+const drawerNavigationScreens = createDrawerNavigator({
+  Menu: consolidatedNavigation,
+  Filters: filtersNavigator,
+});
+
+export default createAppContainer(drawerNavigationScreens);

@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   mealDetails: {
     width: '100%',
     marginTop: 5,
-    flexDirection: 'row',
     justifyContent: 'space-around',
   },
   mealDetailText: {
