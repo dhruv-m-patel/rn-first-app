@@ -12,7 +12,7 @@ import FiltersScreen from '../screens/FiltersScreen';
 import RecipeScreen from '../screens/RecipeScreen';
 import theme from '../../common/theme';
 
-const screenNavigationOptions = {
+const appNavigationOptions = {
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: Platform.OS === 'android' ? theme.color.primary : undefined,
@@ -21,24 +21,24 @@ const screenNavigationOptions = {
   },
 };
 
-const screenNavigation = {
+const mainNavigatorScreens = {
   Categories: CategoriesScreen,
   Meals: MealsScreen,
   Recipe: RecipeScreen
 };
 
-const favoritesScreens = {
+const favoritesNavigatorScreens = {
   Favorites: FavoritesScreen,
   Recipe: RecipeScreen,
 };
 
-const mainNavigator = createStackNavigator(screenNavigation, screenNavigationOptions);
+const screenNavigator = createStackNavigator(mainNavigatorScreens, appNavigationOptions);
 
-const favoritesNavigation = createStackNavigator(favoritesScreens, screenNavigationOptions);
+const favoritesNavigator = createStackNavigator(favoritesNavigatorScreens, appNavigationOptions);
 
-const tabNavigationScreens = {
+const tabNavigatorScreens = {
   Meals: {
-    screen: mainNavigator,
+    screen: screenNavigator,
     navigationOptions: {
       tabBarLabel: 'Menu',
       tabBarIcon: tabInfo => (
@@ -51,7 +51,7 @@ const tabNavigationScreens = {
     },
   },
   Favorites: {
-    screen: favoritesNavigation,
+    screen: favoritesNavigator,
     navigationOptions: {
       tabBarLabel: 'My Favorites',
       tabBarIcon: tabInfo => (
@@ -71,15 +71,15 @@ const tabNavigationOptions = {
   },
 };
 
-const consolidatedNavigation = createBottomTabNavigator(tabNavigationScreens, tabNavigationOptions);
+const appNavigator = createBottomTabNavigator(tabNavigatorScreens, tabNavigationOptions);
 
 const filtersNavigator = createStackNavigator({
   Filters: FiltersScreen,
 });
 
-const drawerNavigationScreens = createDrawerNavigator({
-  Menu: consolidatedNavigation,
+const drawerNavigator = createDrawerNavigator({
+  Menu: appNavigator,
   Filters: filtersNavigator,
 });
 
-export default createAppContainer(drawerNavigationScreens);
+export default createAppContainer(drawerNavigator);
