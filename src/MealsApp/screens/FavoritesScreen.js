@@ -1,19 +1,9 @@
 import React from 'react';
 import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
 import Screen from '../components/Screen';
 import MealsList from '../components/MealsList';
 import * as Data from '../static/data.json';
-import theme from '../../common/theme';
-
-const MenuButton = props => (
-  <HeaderButton
-    IconComponent={Ionicons}
-    iconSize={23}
-    color={Platform.OS === 'android' ? theme.color.accent : undefined}
-    {...props}
-  />
-);
+import ScreenHeaderButton from '../components/ScreenHeaderButton';
 
 const FavoritesScreen = ({
   favoriteMealIds = ['m1', 'm5'],
@@ -38,19 +28,19 @@ const FavoritesScreen = ({
   );
 }
 
-FavoritesScreen.navigationOptions = {
+FavoritesScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'My Favorites',
   headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={MenuButton}>
+    <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
       <Item
         title="Menu"
         iconName={'ios-menu'}
         onPress={() => {
-          console.log('Menu button clicked');
+          navigation.toggleDrawer();
         }}
       />
     </HeaderButtons>
   )
-};
+});
 
 export default FavoritesScreen;

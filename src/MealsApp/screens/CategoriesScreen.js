@@ -1,13 +1,12 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { View } from 'react-native';
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import Card from '../components/Card';
 import Text from '../../common/components/Text';
-import theme from '../../common/theme';
+import ScreenHeaderButton from '../components/ScreenHeaderButton';
 
 const styles = StyleSheet.create({
   card: {
@@ -18,15 +17,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   }
 });
-
-const MenuButton = props => (
-  <HeaderButton
-    IconComponent={Ionicons}
-    iconSize={23}
-    color={Platform.OS === 'android' ? theme.color.accent : undefined}
-    {...props}
-  />
-);
 
 const CategoryCard = ({
   navigation,
@@ -69,19 +59,19 @@ const CategoriesScreen = ({
   </Screen>
 );
 
-CategoriesScreen.navigationOptions = {
+CategoriesScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Meal Categories',
   headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={MenuButton}>
+    <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
       <Item
         title="Menu"
         iconName={'ios-menu'}
         onPress={() => {
-          console.log('Menu button clicked');
+          navigation.toggleDrawer();
         }}
       />
     </HeaderButtons>
   )
-};
+});
 
 export default CategoriesScreen;

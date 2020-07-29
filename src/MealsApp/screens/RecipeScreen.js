@@ -1,12 +1,11 @@
 import React from 'react';
-import { Image, View, ScrollView, Platform, StyleSheet } from 'react-native';
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
+import { Image, View, ScrollView, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import MealTag from '../components/MealTag';
 import Text from '../../common/components/Text';
-import theme from '../../common/theme';
+import ScreenHeaderButton from '../components/ScreenHeaderButton';
 
 const styles = StyleSheet.create({
   row: {
@@ -28,15 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-
-const FavoriteButton = props => (
-  <HeaderButton
-    IconComponent={Ionicons}
-    iconSize={23}
-    color={Platform.OS === 'android' ? theme.color.primary : undefined}
-    {...props}
-  />
-);
 
 const RecipeScreen = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
@@ -98,7 +88,7 @@ RecipeScreen.navigationOptions = ({ navigation }) => {
   return {
     headerTitle: recipe.title,
     headerRight: ()  => (
-      <HeaderButtons HeaderButtonComponent={FavoriteButton}>
+      <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
         <Item
           title="Favorite"
           iconName={'ios-star-outline'}

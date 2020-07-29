@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, View, StyleSheet } from 'react-native';
 import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,15 +23,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const MenuButton = props => (
-  <HeaderButton
-    IconComponent={Ionicons}
-    iconSize={23}
-    color={Platform.OS === 'android' ? theme.color.accent : undefined}
-    {...props}
-  />
-);
-
 const FilterSwitch = ({
   label,
   value,
@@ -48,11 +39,24 @@ const FilterSwitch = ({
   </View>
 );
 
-const FiltersScreen = () => {
+const FiltersScreen = ({
+  navigation,
+}) => {
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isLectoseFree, setIsLectoseFree] = useState(false);
+
+  useEffect(() => {
+    navigation.setParams({
+      getFilters: () => ({
+        isGlutenFree,
+        isVegan,
+        isVegetarian,
+        isLectoseFree,
+      }),
+    });
+  }, [isGlutenFree, isVegan, isVegetarian, isLectoseFree]);
 
   return (
     <Screen style={styles.filtersScreen}>
@@ -83,20 +87,40 @@ const FiltersScreen = () => {
   );
 };
 
-FiltersScreen.navigationOptions = {
+const FiltersScreenHeaderButton = props => (
+  <HeaderButton
+    IconComponent={Ionicons}
+    iconSize={23}
+    color={Platform.OS === 'android' ? theme.color.accent : undefined}
+    {...props}
+  />
+);
+
+FiltersScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Current Filters',
   headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={MenuButton}>
+    <HeaderButtons HeaderButtonComponent={FiltersScreenHeaderButton}>
       <Item
         title="Menu"
         iconName={'ios-menu'}
         onPress={() => {
-          console.log('Menu button clicked');
+          navigation.toggleDrawer();
+        }}
+      />
+    </HeaderButtons>
+  ),
+  headerRight: () => (
+    <HeaderButtons HeaderButtonComponent={FiltersScreenHeaderButton}>
+      <Item
+        title="Save"
+        iconName={'ios-save'}
+        onPress={() => {
+          navigation.getParam('getFilters');
         }}
       />
     </HeaderButtons>
   )
-};
+});
 
 
 export default FiltersScreen;
