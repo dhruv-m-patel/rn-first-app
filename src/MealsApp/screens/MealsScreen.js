@@ -1,21 +1,22 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import MealsList from '../components/MealsList';
 
-const styles = StyleSheet.create({
-  mealsScreen: {
-    alignItems: 'flex-start',
-  },
-});
+const MealsScreen = ({
+  navigation,
+}) => {
+  const {
+    favoriteMeals,
+    filteredMeals,
+  } = useSelector(({ meals }) => meals);
 
-const MealsScreen = ({ navigation }) => {
   const categoryId = navigation.getParam('categoryId');
-  const meals = Data.meals.filter(m => m.categoryIds.includes(categoryId));
+  const meals = filteredMeals.filter(m => m.categoryIds.includes(categoryId));
 
   return (
-    <Screen style={styles.mealsScreen}>
+    <Screen>
       <MealsList
         meals={meals}
         onPress={(mealId) => {
@@ -23,6 +24,7 @@ const MealsScreen = ({ navigation }) => {
             routeName: 'Recipe',
             params: {
               mealId,
+              isFavorite: favoriteMeals.includes(m => m.id === mealId),
             },
           });
         }}

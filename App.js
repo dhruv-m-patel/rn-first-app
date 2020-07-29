@@ -44,6 +44,7 @@ export default function App() {
     setHasInitialized(true);
   };
 
+
   const CurrentApp = hasInitialized && !!appName && APPS[appName];
   return (
     <ThemeContext.Provider value={{ canUseCustomFonts: isLoaded }}>

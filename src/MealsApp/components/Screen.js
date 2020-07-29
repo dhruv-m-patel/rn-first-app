@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingVertical: 10,
     paddingHorizontal: 15,
   },

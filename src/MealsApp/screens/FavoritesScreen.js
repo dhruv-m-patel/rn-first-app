@@ -1,32 +1,43 @@
 import React from 'react';
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
+import { View } from 'react-native';
 import Screen from '../components/Screen';
 import MealsList from '../components/MealsList';
-import * as Data from '../static/data.json';
 import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import Text from '../../common/components/Text';
 
 const FavoritesScreen = ({
-  favoriteMealIds = ['m1', 'm5'],
   navigation,
 }) => {
-  const favoriteMeals = favoriteMealIds.map(mealId => Data.meals.find(m => m.id == mealId));
+  const favoriteMeals = useSelector(({ meals }) => meals.favoriteMeals);
 
   return (
-    <Screen style={{ alignItems: 'flex-start' }}>
-      <MealsList
-        meals={favoriteMeals}
-        onPress={mealId => {
-          navigation.navigate({
-            routeName: 'Recipe',
-            params: {
-              mealId,
-            },
-          });
-        }}
-      />
+    <Screen>
+      {favoriteMeals.length
+        ? (
+          <MealsList
+            meals={favoriteMeals}
+            onPress={mealId => {
+              navigation.navigate({
+                routeName: 'Recipe',
+                params: {
+                  mealId,
+                  isFavorite: true,
+                },
+              });
+            }}
+          />
+        )
+        : (
+          <View>
+            <Text bold>You have no favorite meals set!</Text>
+          </View>
+        )
+      }
     </Screen>
   );
-}
+      }
 
 FavoritesScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'My Favorites',

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, View, StyleSheet } from 'react-native';
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../components/Screen';
 import Text from '../../common/components/Text';
-import theme from '../../common/theme';
+import { updateFilters } from '../store';
+import ScreenHeaderButton from '../components/ScreenHeaderButton';
 
 const styles = StyleSheet.create({
-  filtersScreen: {
-    justifyContent: 'flex-start',
-  },
   filtersScreenHeader: {
     fontSize: 18,
     marginBottom: 20,
@@ -41,25 +39,29 @@ const FilterSwitch = ({
 
 const FiltersScreen = ({
   navigation,
+  filters,
+  saveFilters,
 }) => {
-  const [isGlutenFree, setIsGlutenFree] = useState(false);
-  const [isVegan, setIsVegan] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState(false);
-  const [isLectoseFree, setIsLectoseFree] = useState(false);
+  const [isGlutenFree, setIsGlutenFree] = useState(filters.isGlutenFree);
+  const [isVegan, setIsVegan] = useState(filters.isVegan);
+  const [isVegetarian, setIsVegetarian] = useState(filters.isVegetarian);
+  const [isLectoseFree, setIsLectoseFree] = useState(filters.isLectoseFree);
 
   useEffect(() => {
     navigation.setParams({
-      getFilters: () => ({
-        isGlutenFree,
-        isVegan,
-        isVegetarian,
-        isLectoseFree,
-      }),
+      updateCurrentFilters: () => {
+        saveFilters({
+          ...(typeof isGlutenFree !== 'undefined' && { isGlutenFree }),
+          ...(typeof isVegan !== 'undefined' && { isVegan }),
+          ...(typeof isVegetarian !== 'undefined' && { isVegetarian }),
+          ...(typeof isLectoseFree !== 'undefined' && { isLectoseFree }),
+        });
+      },
     });
-  }, [isGlutenFree, isVegan, isVegetarian, isLectoseFree]);
+  }, [saveFilters, isGlutenFree, isVegan, isVegetarian, isLectoseFree]);
 
   return (
-    <Screen style={styles.filtersScreen}>
+    <Screen>
       <View style={styles.filtersScreenHeader}>
         <Text bold>Available filters</Text>
       </View>
@@ -87,40 +89,46 @@ const FiltersScreen = ({
   );
 };
 
-const FiltersScreenHeaderButton = props => (
-  <HeaderButton
-    IconComponent={Ionicons}
-    iconSize={23}
-    color={Platform.OS === 'android' ? theme.color.accent : undefined}
-    {...props}
-  />
-);
+FiltersScreen.navigationOptions = ({ navigation }) => {
+  const updateCurrentFilters = navigation.getParam('updateCurrentFilters');
 
-FiltersScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: 'Current Filters',
-  headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={FiltersScreenHeaderButton}>
-      <Item
-        title="Menu"
-        iconName={'ios-menu'}
-        onPress={() => {
-          navigation.toggleDrawer();
-        }}
-      />
-    </HeaderButtons>
-  ),
-  headerRight: () => (
-    <HeaderButtons HeaderButtonComponent={FiltersScreenHeaderButton}>
-      <Item
-        title="Save"
-        iconName={'ios-save'}
-        onPress={() => {
-          navigation.getParam('getFilters');
-        }}
-      />
-    </HeaderButtons>
-  )
-});
+  return ({
+    headerTitle: 'Current Filters',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+        <Item
+          title="Menu"
+          iconName={'ios-menu'}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+        <Item
+          title="Save"
+          iconName={'ios-save'}
+          onPress={updateCurrentFilters}
+        />
+      </HeaderButtons>
+    )
+  });
+};
+
+function mapStateToProps({ meals }) {
+  const { filters } = meals;
+  return {
+    filters,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveFilters: filters => dispatch(updateFilters(filters)),
+  };
+}
 
 
-export default FiltersScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersScreen);
