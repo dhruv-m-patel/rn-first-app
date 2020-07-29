@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, View, StyleSheet } from 'react-native';
 import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
@@ -32,29 +32,56 @@ const MenuButton = props => (
   />
 );
 
-const FiltersScreen = () => (
-  <Screen style={styles.filtersScreen}>
-    <View style={styles.filtersScreenHeader}>
-      <Text bold>Available filters</Text>
-    </View>
-    <View style={styles.filterRow}>
-      <Text>Gluten-free</Text>
-      <Switch />
-    </View>
-    <View style={styles.filterRow}>
-      <Text>Vegan</Text>
-      <Switch />
-    </View>
-    <View style={styles.filterRow}>
-      <Text>Vegetarian</Text>
-      <Switch />
-    </View>
-    <View style={styles.filterRow}>
-      <Text>Lectose-free</Text>
-      <Switch />
-    </View>
-  </Screen>
+const FilterSwitch = ({
+  label,
+  value,
+  onChange,
+  style: customStyle,
+  ...props
+}) => (
+  <View style={{ ...styles.filterRow, ...customStyle }} {...props}>
+    <Text>{label}</Text>
+    <Switch
+      value={value}
+      onValueChange={onChange}
+    />
+  </View>
 );
+
+const FiltersScreen = () => {
+  const [isGlutenFree, setIsGlutenFree] = useState(false);
+  const [isVegan, setIsVegan] = useState(false);
+  const [isVegetarian, setIsVegetarian] = useState(false);
+  const [isLectoseFree, setIsLectoseFree] = useState(false);
+
+  return (
+    <Screen style={styles.filtersScreen}>
+      <View style={styles.filtersScreenHeader}>
+        <Text bold>Available filters</Text>
+      </View>
+      <FilterSwitch
+        label="Gluten-free"
+        value={isGlutenFree}
+        onChange={setIsGlutenFree}
+      />
+      <FilterSwitch
+        label="Vegan"
+        value={isVegan}
+        onChange={setIsVegan}
+      />
+      <FilterSwitch
+        label="Vegetarian"
+        value={isVegetarian}
+        onChange={setIsVegetarian}
+      />
+      <FilterSwitch
+        label="Lectose-free"
+        value={isLectoseFree}
+        onChange={setIsLectoseFree}
+      />
+    </Screen>
+  );
+};
 
 FiltersScreen.navigationOptions = {
   headerTitle: 'Current Filters',
