@@ -24,7 +24,7 @@ const MealsScreen = ({
             routeName: 'Recipe',
             params: {
               mealId,
-              isFavorite: favoriteMeals.includes(m => m.id === mealId),
+              isFavorite: !!favoriteMeals.find(m => m.id === mealId),
             },
           });
         }}
