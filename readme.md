@@ -29,3 +29,9 @@ $ npm start
   - Second screen is where you try to match selected number with system's guess
   - Once the number is matched, GameOver screen is shown
   - Uses AppHeader for all screens with a consistent feel. Built with hooks and custom components.
+
+- **The Meals App**: A complex multi-screen app to showcase stack/drawer navigation couple with state management with redux
+
+  - Displays different meal categories to choose from and then displays different meals in the selected category with final screen displaying recipe for the meal
+  - Filters allow to see items from selected filters: gluten-free, vegan, vegetarian or lectose-free
+  - Recipes can be marked as favorites and displayed separately on My Favorites tab

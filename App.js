@@ -5,6 +5,7 @@ import { AppLoading } from 'expo';
 import CenteredContent from './src/common/components/CenteredContent';
 import GoalTrackerApp from './src/GoalTrackerApp';
 import GuessTheNumberApp from './src/GuessTheNumberApp';
+import MealsApp from './src/MealsApp';
 import Card from './src/common/components/Card';
 import ThemeContext from './src/common/context/ThemeContext';
 
@@ -23,6 +24,7 @@ const loadCustomFonts = async () => loadAsync({
 const APPS = {
   goalTracker: GoalTrackerApp,
   guessTheNumber: GuessTheNumberApp,
+  meals: MealsApp,
 };
 
 export default function App() {
@@ -41,6 +43,7 @@ export default function App() {
     Alert.alert('Error', 'Loading custom fonts failed');
     setHasInitialized(true);
   };
+
 
   const CurrentApp = hasInitialized && !!appName && APPS[appName];
   return (
@@ -63,6 +66,12 @@ export default function App() {
                     <Button
                       title="Guess The Number"
                       onPress={() => handleAppSelection('guessTheNumber')}
+                    />
+                  </Card>
+                  <Card>
+                    <Button
+                      title="Meals App"
+                      onPress={() => handleAppSelection('meals')}
                     />
                   </Card>
                 </CenteredContent>
