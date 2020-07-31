@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, View, StyleSheet } from 'react-native';
+import { Switch, View, Platform, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../components/Screen';
 import Text from '../../common/components/Text';
 import { updateFilters } from '../store';
 import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import theme from '../../common/theme';
 
 const styles = StyleSheet.create({
   filtersScreenHeader: {
@@ -99,6 +100,7 @@ FiltersScreen.navigationOptions = ({ navigation }) => {
         <Item
           title="Menu"
           iconName={'ios-menu'}
+          color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={() => {
             navigation.toggleDrawer();
           }}
@@ -110,6 +112,7 @@ FiltersScreen.navigationOptions = ({ navigation }) => {
         <Item
           title="Save"
           iconName={'ios-save'}
+          color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={updateCurrentFilters}
         />
       </HeaderButtons>

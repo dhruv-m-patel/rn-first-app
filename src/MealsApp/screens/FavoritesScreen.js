@@ -1,11 +1,12 @@
 import React from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector } from 'react-redux';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import Screen from '../components/Screen';
 import MealsList from '../components/MealsList';
 import ScreenHeaderButton from '../components/ScreenHeaderButton';
 import Text from '../../common/components/Text';
+import theme from '../../common/theme';
 
 const FavoritesScreen = ({
   navigation,
@@ -46,6 +47,7 @@ FavoritesScreen.navigationOptions = ({ navigation }) => ({
       <Item
         title="Menu"
         iconName={'ios-menu'}
+        color={Platform.OS === 'android' ? theme.color.accent : undefined}
         onPress={() => {
           navigation.toggleDrawer();
         }}

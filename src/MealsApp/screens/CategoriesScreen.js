@@ -1,12 +1,13 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../components/Screen';
 import * as Data from '../static/data.json';
 import Card from '../components/Card';
 import Text from '../../common/components/Text';
 import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import theme from '../../common/theme';
 
 const styles = StyleSheet.create({
   card: {
@@ -66,6 +67,7 @@ CategoriesScreen.navigationOptions = ({ navigation }) => ({
       <Item
         title="Menu"
         iconName={'ios-menu'}
+        color={Platform.OS === 'android' ? theme.color.accent : undefined}
         onPress={() => {
           navigation.toggleDrawer();
         }}

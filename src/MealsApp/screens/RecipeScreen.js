@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { Image, View, ScrollView, StyleSheet } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import { Image, View, ScrollView, Platform, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 import Screen from '../components/Screen';
@@ -8,6 +8,7 @@ import MealTag from '../components/MealTag';
 import Text from '../../common/components/Text';
 import ScreenHeaderButton from '../components/ScreenHeaderButton';
 import { updateFavorites } from '../store';
+import theme from '../../common/theme';
 
 const styles = StyleSheet.create({
   row: {
@@ -113,6 +114,7 @@ RecipeScreen.navigationOptions = ({ navigation }) => {
         <Item
           title="Favorite"
           iconName={isFavorite ? 'ios-star-outline' : 'ios-star'}
+          color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={saveFavorites}
         />
       </HeaderButtons>
