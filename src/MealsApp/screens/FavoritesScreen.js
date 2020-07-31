@@ -2,9 +2,9 @@ import React from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector } from 'react-redux';
 import { View, Platform } from 'react-native';
-import Screen from '../components/Screen';
+import Screen from '../../common/components/Screen';
 import MealsList from '../components/MealsList';
-import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import ScreenHeaderButton from '../../common/components/ScreenHeaderButton';
 import Text from '../../common/components/Text';
 import theme from '../../common/theme';
 

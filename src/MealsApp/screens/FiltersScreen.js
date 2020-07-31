@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Switch, View, Platform, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import Screen from '../components/Screen';
+import Screen from '../../common/components/Screen';
 import Text from '../../common/components/Text';
 import { updateFilters } from '../store';
-import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import ScreenHeaderButton from '../../common/components/ScreenHeaderButton';
 import theme from '../../common/theme';
 
 const styles = StyleSheet.create({

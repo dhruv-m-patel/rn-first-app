@@ -2,11 +2,11 @@ import React, { useCallback, useEffect } from 'react';
 import { Image, View, ScrollView, Platform, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
-import Screen from '../components/Screen';
+import Screen from '../../common/components/Screen';
 import * as Data from '../static/data.json';
 import MealTag from '../components/MealTag';
 import Text from '../../common/components/Text';
-import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import ScreenHeaderButton from '../../common/components/ScreenHeaderButton';
 import { updateFavorites } from '../store';
 import theme from '../../common/theme';
 

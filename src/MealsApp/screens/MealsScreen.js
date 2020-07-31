@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Screen from '../components/Screen';
+import Screen from '../../common/components/Screen';
 import * as Data from '../static/data.json';
 import MealsList from '../components/MealsList';
 

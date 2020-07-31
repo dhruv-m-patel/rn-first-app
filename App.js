@@ -8,6 +8,7 @@ import GuessTheNumberApp from './src/GuessTheNumberApp';
 import MealsApp from './src/MealsApp';
 import Card from './src/common/components/Card';
 import ThemeContext from './src/common/context/ThemeContext';
+import ShoppingApp from './src/ShoppingApp';
 
 const styles = StyleSheet.create({
   gameScreen: {
@@ -25,6 +26,7 @@ const APPS = {
   goalTracker: GoalTrackerApp,
   guessTheNumber: GuessTheNumberApp,
   meals: MealsApp,
+  shopping: ShoppingApp,
 };
 
 export default function App() {
@@ -72,6 +74,12 @@ export default function App() {
                     <Button
                       title="Meals App"
                       onPress={() => handleAppSelection('meals')}
+                    />
+                  </Card>
+                  <Card>
+                    <Button
+                      title="Shopping App"
+                      onPress={() => handleAppSelection('shopping')}
                     />
                   </Card>
                 </CenteredContent>

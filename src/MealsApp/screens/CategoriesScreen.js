@@ -2,11 +2,11 @@ import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { View, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import Screen from '../components/Screen';
+import Screen from '../../common/components/Screen';
 import * as Data from '../static/data.json';
 import Card from '../components/Card';
 import Text from '../../common/components/Text';
-import ScreenHeaderButton from '../components/ScreenHeaderButton';
+import ScreenHeaderButton from '../../common/components/ScreenHeaderButton';
 import theme from '../../common/theme';
 
 const styles = StyleSheet.create({
