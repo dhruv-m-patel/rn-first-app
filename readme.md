@@ -30,7 +30,7 @@ $ npm start
   - Once the number is matched, GameOver screen is shown
   - Uses AppHeader for all screens with a consistent feel. Built with hooks and custom components.
 
-- **The Meals App**: A complex multi-screen app to showcase stack/drawer navigation couple with state management with redux
+- **The Meals App**: A complex multi-screen app to showcase stack/drawer navigation coupled with state management with redux
 
   - Displays different meal categories to choose from and then displays different meals in the selected category with final screen displaying recipe for the meal
   - Filters allow to see items from selected filters: gluten-free, vegan, vegetarian or lectose-free
