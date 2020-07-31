@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import Product from '../../components/Product';
 import Screen from '../../../common/components/Screen';
 
-const ProductCatalogScreen = () => {
+const ProductCatalogScreen = ({
+  navigation,
+}) => {
   const { availableProducts } = useSelector(({ products }) => products);
 
   return (
@@ -16,7 +18,14 @@ const ProductCatalogScreen = () => {
           <Product
             product={item}
             onAddToCart={() => {}}
-            onViewDetails={() => {}}
+            onViewDetails={(productId) => {
+              navigation.navigate({
+                routeName: 'ProductDetails',
+                params: {
+                  productId,
+                },
+              });
+            }}
           />
         )}
       />

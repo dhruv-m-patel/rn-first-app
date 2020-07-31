@@ -1,10 +1,72 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Image, Button, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
+import * as Data from '../../static/data.json';
+import {useSelector} from 'react-redux';
+import Screen from '../../../common/components/Screen';
+import Text from '../../../common/components/Text';
 
-const ProductDetailsScreen = () => (
-  <View>
-    <Text>Product Details Screen</Text>
-  </View>
-);
+const styles = StyleSheet.create({
+  image: {
+    height: 200,
+    width: '100%',
+  },
+  addToCartButton: {
+    marginVertical: 20,
+  },
+  productHeader: {
+    marginBottom: 20,
+  },
+  price: {
+    fontSize: 14,
+  }
+});
+
+const ProductDetailsScreen = ({ navigation }) => {
+  const productId = navigation.getParam('productId');
+  const { availableProducts } = useSelector(({ products }) => products);
+  const product = availableProducts.find(p => p.id === productId);
+
+  return (
+    <Screen>
+      <Image
+        source={{ uri: product.imageUrl }}
+        style={styles.image}
+      />
+      <View style={styles.addToCartButton}>
+        <Button title="Add To Cart" onPress={() => {}} />
+      </View>
+      <View style={styles.productHeader}>
+        <Text bold>{product.title}</Text>
+        <Text style={styles.price}>${product.price}</Text>
+      </View>
+      <Text>{product.description}</Text>
+    </Screen>
+  );
+}
+
+ProductDetailsScreen.navigationOptions = ({
+  navigation,
+}) => {
+  const productId = navigation.getParam('productId');
+  const product = Data.products.find(p => p.id === productId);
+
+  return {
+    headerTitle: product.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+        <Item
+          title="Cart"
+          iconName="ios-cart"
+          color={Platform.OS === 'android' ? theme.color.accent : undefined}
+          onPress={() => {
+            console.log('Add to cart')
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
+}
 
 export default ProductDetailsScreen;
