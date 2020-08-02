@@ -2,7 +2,7 @@ import * as Data from '../../static/data.json';
 
 const initialState = {
   availableProducts: Data.products,
-  userProducts: [],
+  userProducts: Data.products.filter(p => p.ownerId === 'u1'),
 };
 
 export default function productsReducer(state = initialState, action) {
