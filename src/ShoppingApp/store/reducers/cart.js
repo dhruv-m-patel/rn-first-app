@@ -13,11 +13,11 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         items: state.items[action.product.id]
           ? {
-              ...state.items,
-              [action.product.id]: {
-                ...action.product,
-                quantity: state.items[action.product.id].quantity + 1,
-              },
+            ...state.items,
+            [action.product.id]: {
+              ...action.product,
+              quantity: state.items[action.product.id].quantity + 1,
+            },
           }
           : {
             ...state.items,

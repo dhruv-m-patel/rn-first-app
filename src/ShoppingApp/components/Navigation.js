@@ -40,7 +40,7 @@ const tabNavigatorScreens = {
     screen: shopNavigator,
     navigationOptions: {
       tabBarLabel: 'Shop',
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <Ionicons
           name="ios-restaurant"
           size={25}
@@ -53,7 +53,7 @@ const tabNavigatorScreens = {
     screen: userNavigator,
     navigationOptions: {
       tabBarLabel: 'Admin',
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <Ionicons
           name="ios-star"
           size={25}
@@ -73,7 +73,7 @@ const tabNavigationOptions = {
 const appNavigator = createBottomTabNavigator(tabNavigatorScreens, tabNavigationOptions);
 
 const orderNavigator = createStackNavigator({
-  Orders: OrdersScreen
+  Orders: OrdersScreen,
 }, appNavigationOptions);
 
 const drawerNavigator = createDrawerNavigator({

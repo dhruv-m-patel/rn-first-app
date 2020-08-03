@@ -25,13 +25,15 @@ const GameScreen = ({
   selectedNumber,
   onGameOver,
 }) => {
-  const [systemGuess, setSystemGuess] = useState(() => generateRandomNumberGuess(1, 99, selectedNumber));
+  const [systemGuess, setSystemGuess] = useState(
+    () => generateRandomNumberGuess(1, 99, selectedNumber),
+  );
   const [numberOfRounds, setNumberOfRounds] = useState(0);
   const lowestSystemGuess = useRef(1);
   const highestSystemGuess = useRef(100);
 
-  const handleGenerateNextGuess = direction => {
-    if ((direction === 'lower' && systemGuess < selectedNumber ) || (direction === 'greater' && systemGuess > selectedNumber)) {
+  const handleGenerateNextGuess = (direction) => {
+    if ((direction === 'lower' && systemGuess < selectedNumber) || (direction === 'greater' && systemGuess > selectedNumber)) {
       Alert.alert('Oh, no!', 'Nope, the system guess is a different number.', [{ text: 'Sorry!', style: 'cancel' }]);
       return;
     }
@@ -41,9 +43,12 @@ const GameScreen = ({
     } else {
       lowestSystemGuess.current = systemGuess;
     }
-    const nextGuess = generateRandomNumberGuess(lowestSystemGuess.current, highestSystemGuess.current);
+    const nextGuess = generateRandomNumberGuess(
+      lowestSystemGuess.current,
+      highestSystemGuess.current,
+    );
     setSystemGuess(nextGuess);
-    setNumberOfRounds(rounds => rounds + 1);
+    setNumberOfRounds((rounds) => rounds + 1);
   };
 
   useEffect(() => {
@@ -77,12 +82,12 @@ const GameScreen = ({
           <Text bold>System's Guess</Text>
           <HighlightNumber
             number={systemGuess}
-            color={theme.baseTextColor }
+            color={theme.baseTextColor}
           />
         </Card>
       </View>
     </View>
   );
-}
+};
 
 export default GameScreen;

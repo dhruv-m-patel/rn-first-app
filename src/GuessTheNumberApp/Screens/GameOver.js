@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   successImage: {
     height: 300,
     width: '100%',
-  }
+  },
 });
 
 const GameOver = ({
@@ -62,7 +62,7 @@ const GameOver = ({
     <View style={styles.screen}>
       <View style={styles.imageContainer}>
         <Image
-          source={require('../../../assets/success.png')}
+          source={require('../../../assets/success.png')} // eslint-disable-line global-require
           style={styles.successImage}
           resizeMode="cover"
         />

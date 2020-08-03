@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 const MealTag = ({
-  text
+  text,
 }) => (
   <View style={styles.tag}>
     <Text bold style={styles.tagContent}>{text}</Text>

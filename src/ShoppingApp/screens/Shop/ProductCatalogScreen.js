@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
-import { FlatList } from 'react-native';
+import { Platform, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { addToCart } from '../../store/actions/cart';
 import Product from '../../components/Product';
 import Screen from '../../../common/components/Screen';
-import { addToCart } from '../../store/actions/cart';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
+import theme from '../../../common/theme';
 
 const ProductCatalogScreen = ({
   navigation,
@@ -15,7 +16,7 @@ const ProductCatalogScreen = ({
   const dispatch = useDispatch();
 
   const handleAddProductToCart = useCallback((productId) => {
-    dispatch(addToCart(availableProducts.find(p => p.id === productId)));
+    dispatch(addToCart(availableProducts.find((p) => p.id === productId)));
   }, [dispatch, availableProducts]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const ProductCatalogScreen = ({
     <Screen>
       <FlatList
         data={availableProducts}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Product
             product={item}
@@ -46,7 +47,7 @@ const ProductCatalogScreen = ({
       />
     </Screen>
   );
-}
+};
 
 ProductCatalogScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Products',

@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     width: '100%',
-  }
+  },
 });
 
 const GoalList = ({
   items = [],
   onResetGoals,
-  onDeleteGoal
+  onDeleteGoal,
 }) => {
   const handleDeleteGoal = (goalId) => {
     onDeleteGoal(goalId);
@@ -27,7 +27,7 @@ const GoalList = ({
     <View>
       <List
         data={items}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Flex style={styles.goalListItem}>
             <Flex.Content width="90%">
@@ -51,6 +51,6 @@ const GoalList = ({
       )}
     </View>
   );
-}
+};
 
 export default GoalList;

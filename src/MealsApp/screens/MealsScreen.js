@@ -13,7 +13,7 @@ const MealsScreen = ({
   } = useSelector(({ meals }) => meals);
 
   const categoryId = navigation.getParam('categoryId');
-  const meals = filteredMeals.filter(m => m.categoryIds.includes(categoryId));
+  const meals = filteredMeals.filter((m) => m.categoryIds.includes(categoryId));
 
   return (
     <Screen>
@@ -24,7 +24,7 @@ const MealsScreen = ({
             routeName: 'Recipe',
             params: {
               mealId,
-              isFavorite: !!favoriteMeals.find(m => m.id === mealId),
+              isFavorite: !!favoriteMeals.find((m) => m.id === mealId),
             },
           });
         }}
@@ -35,7 +35,7 @@ const MealsScreen = ({
 
 MealsScreen.navigationOptions = ({ navigation }) => {
   const categoryId = navigation.getParam('categoryId');
-  const categoryInContext = Data.categories.find(c => c.id === categoryId);
+  const categoryInContext = Data.categories.find((c) => c.id === categoryId);
 
   return {
     headerTitle: `${categoryInContext.name} Meals`,

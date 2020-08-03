@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet } from 'react-native';
-import { useSelector , useDispatch} from 'react-redux';
+import { View, Button, FlatList, StyleSheet } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import Box from '../../../common/components/Box';
 import Screen from '../../../common/components/Screen';
 import Text from '../../../common/components/Text';
 import theme from '../../../common/theme';
 import CartItem from '../../components/CartItem';
-import {removeFromCart} from '../../store/actions/cart';
+import { removeFromCart } from '../../store/actions/cart';
 import { createOrder } from '../../store/actions/order';
 
 const styles = StyleSheet.create({
@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
 });
 
 const CartScreen = ({
-  navigation
+  navigation,
 }) => {
   const { items, totalAmount } = useSelector(({ cart }) => cart);
   const [hasCreatedOrder, setHasCreatedOrder] = useState(false);
   const dispatch = useDispatch();
 
   const handleRemoveCartItem = useCallback((productId) => {
-    const productToRemove = Object.values(items).find(i => i.id === productId);
+    const productToRemove = Object.values(items).find((i) => i.id === productId);
     dispatch(removeFromCart(productToRemove));
   }, [dispatch, items]);
 
@@ -72,7 +72,7 @@ const CartScreen = ({
             </Box>
             <FlatList
               data={Object.values(items)}
-              keyExtractor={item => item.id}
+              keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <CartItem
                   cartItem={item}

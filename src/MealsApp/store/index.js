@@ -1,4 +1,4 @@
-import { createStore, combineReducers} from 'redux';
+import { createStore, combineReducers } from 'redux';
 import * as Data from '../static/data.json';
 
 const Actions = {
@@ -6,19 +6,15 @@ const Actions = {
   UPDATE_FILTERS: 'UpdateFilters',
 };
 
-export function updateFavorites(mealId) {
-  return {
-    type: Actions.UPDATE_FAVORITES,
-    mealId: mealId,
-  };
-}
+export const updateFavorites = (mealId) => ({
+  type: Actions.UPDATE_FAVORITES,
+  mealId,
+});
 
-export function updateFilters(filters) {
-  return {
-    type: Actions.UPDATE_FILTERS,
-    filters,
-  };
-}
+export const updateFilters = (filters) => ({
+  type: Actions.UPDATE_FILTERS,
+  filters,
+});
 
 const initialState = {
   filteredMeals: Data.meals,
@@ -34,12 +30,12 @@ const initialState = {
 const mealsReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.UPDATE_FAVORITES:
-      const shouldRemoveFavorite = !!state.favoriteMeals.find(m => m.id === action.mealId);
+      const shouldRemoveFavorite = !!state.favoriteMeals.find((m) => m.id === action.mealId);
       return {
         ...state,
         favoriteMeals: shouldRemoveFavorite
-          ? state.favoriteMeals.filter(m => m.id !== action.mealId)
-          : [].concat(state.favoriteMeals, Data.meals.find(m => m.id === action.mealId)),
+          ? state.favoriteMeals.filter((m) => m.id !== action.mealId)
+          : [].concat(state.favoriteMeals, Data.meals.find((m) => m.id === action.mealId)),
       };
 
     case Actions.UPDATE_FILTERS:
@@ -53,7 +49,7 @@ const mealsReducer = (state = initialState, action) => {
       return {
         ...state,
         filters: updatedFilters,
-        filteredMeals: Data.meals.filter(m => (
+        filteredMeals: Data.meals.filter((m) => (
           (updatedFilters.isGlutenFree && m.isGlutenFree)
           || (updatedFilters.isVegan && m.isVegan)
           || (updatedFilters.isVegetarian && m.isVegetarian)

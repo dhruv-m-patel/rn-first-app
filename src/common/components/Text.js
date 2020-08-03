@@ -11,12 +11,15 @@ const Text = ({
   return (
     <RNText
       style={{
-        ...canUseCustomFonts && { fontFamily: 'open-sans', ...bold && { fontFamily: 'open-sans-bold' }},
+        ...canUseCustomFonts && {
+          fontFamily: 'open-sans',
+          ...bold && { fontFamily: 'open-sans-bold' },
+        },
         ...customStyle,
       }}
       {...props}
     />
   );
-}
+};
 
 export default Text;

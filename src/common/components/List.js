@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 
 const List = ({
-    data = [],
-    keyExtractor = (item) => item.key,
-    renderItem = () => {},
+  data = [],
+  keyExtractor = (item) => item.key,
+  renderItem = () => {},
 }) => (
   <SafeAreaView>
     <FlatList

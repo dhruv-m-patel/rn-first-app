@@ -19,7 +19,7 @@ const FavoritesScreen = ({
         ? (
           <MealsList
             meals={favoriteMeals}
-            onPress={mealId => {
+            onPress={(mealId) => {
               navigation.navigate({
                 routeName: 'Recipe',
                 params: {
@@ -38,7 +38,7 @@ const FavoritesScreen = ({
       }
     </Screen>
   );
-      }
+};
 
 FavoritesScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'My Favorites',
@@ -46,14 +46,14 @@ FavoritesScreen.navigationOptions = ({ navigation }) => ({
     <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
       <Item
         title="Menu"
-        iconName={'ios-menu'}
+        iconName="ios-menu"
         color={Platform.OS === 'android' ? theme.color.accent : undefined}
         onPress={() => {
           navigation.toggleDrawer();
         }}
       />
     </HeaderButtons>
-  )
+  ),
 });
 
 export default FavoritesScreen;

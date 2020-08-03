@@ -7,7 +7,6 @@ import { toReadableDate } from '../../lib/utils';
 import CartItem from './CartItem';
 import { cancelOrder } from '../store/actions/order';
 
-
 const styles = StyleSheet.create({
   orderItem: {
     padding: 10,
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
   },
   date: {
     color: '#333',
-  }
+  },
 });
 
 const OrderItem = ({
@@ -47,7 +46,7 @@ const OrderItem = ({
       {!!shouldShowDetails && (
         <FlatList
           data={Object.values(order.items)}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <CartItem cartItem={item} />
           )}
@@ -66,6 +65,6 @@ const OrderItem = ({
       />
     </Box>
   );
-}
+};
 
 export default OrderItem;

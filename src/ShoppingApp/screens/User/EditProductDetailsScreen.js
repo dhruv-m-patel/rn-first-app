@@ -22,10 +22,13 @@ const EditProductDetailsScreen = ({
   const productId = navigation.getParam('productId');
   const dispatch = useDispatch();
 
-  const product = productId && userProducts.find(p => p.id === productId);
+  const product = productId && userProducts.find((p) => p.id === productId);
   const ownerId = navigation.getParam('ownerId');
   const [title, setTitle] = useState(product?.title);
-  const [imageUrl, setImageUrl] = useState(product?.imageUrl  || 'https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  const [imageUrl, setImageUrl] = useState(
+    product?.imageUrl
+    || 'https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  );
   const [description, setDescription] = useState(product?.description);
   const [price, setPrice] = useState(product?.price);
 
@@ -103,7 +106,7 @@ const EditProductDetailsScreen = ({
 };
 
 EditProductDetailsScreen.navigationOptions = ({ navigation }) => {
-  const productId = navigation.getParam('productId')
+  const productId = navigation.getParam('productId');
 
   return {
     headerTitle: productId ? 'Edit Product' : 'Add Product',
