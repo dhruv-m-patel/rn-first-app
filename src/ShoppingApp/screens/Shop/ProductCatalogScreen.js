@@ -48,26 +48,34 @@ const ProductCatalogScreen = ({
   );
 }
 
-ProductCatalogScreen.navigationOptions = ({ navigation }) => {
-  const cartItems = navigation.getParam('cartItems');
-
-  return {
-    headerTitle: 'Products',
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
-        <Item
-          title="Cart"
-          iconName="ios-cart"
-          color={Platform.OS === 'android' ? theme.color.accent : undefined}
-          onPress={() => {
-            navigation.navigate({
-              routeName: 'Cart',
-            });
-          }}
-        />
-      </HeaderButtons>
-    ),
-  };
-};
+ProductCatalogScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: 'Products',
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+      <Item
+        title="Drawer"
+        iconName="ios-menu"
+        color={Platform.OS === 'android' ? theme.color.accent : undefined}
+        onPress={() => {
+          navigation.toggleDrawer();
+        }}
+      />
+    </HeaderButtons>
+  ),
+  headerRight: () => (
+    <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+      <Item
+        title="Cart"
+        iconName="ios-cart"
+        color={Platform.OS === 'android' ? theme.color.accent : undefined}
+        onPress={() => {
+          navigation.navigate({
+            routeName: 'Cart',
+          });
+        }}
+      />
+    </HeaderButtons>
+  ),
+});
 
 export default ProductCatalogScreen;

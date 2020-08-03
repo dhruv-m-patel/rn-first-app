@@ -1,4 +1,5 @@
 import { CartActions } from '../actions/cart';
+import { OrderActions } from '../actions/order';
 
 const initialState = {
   items: {},
@@ -42,6 +43,9 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         ...updates,
       };
+
+    case OrderActions.CreateOrder:
+      return initialState;
 
     default:
       return state;

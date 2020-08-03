@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import Box from './Box';
 
 const styles = StyleSheet.create({
   card: {
@@ -9,15 +10,6 @@ const styles = StyleSheet.create({
     borderColor: '#eee',
     borderWidth: 2,
     borderRadius: 8,
-    shadowColor: '#ddd',
-    shadowOffset: {
-      height: 2,
-      width: 0,
-    },
-    shadowRadius: 6,
-    shadowOpacity: 0.6,
-    elevation: 5,
-    backgroundColor: 'white',
     marginVertical: 10,
     padding: 15,
   },
@@ -27,7 +19,7 @@ const Card = ({
   style: customStyle,
   ...props
 }) => (
-  <View
+  <Box
     style={{ ...styles.card, ...customStyle }}
     {...props}
   />

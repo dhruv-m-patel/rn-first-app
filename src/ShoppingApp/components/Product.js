@@ -1,22 +1,19 @@
 import React from 'react';
 import { View, Image, Button, StyleSheet } from 'react-native';
 import Text from '../../common/components/Text';
+import Box from '../../common/components/Box';
 
 const styles = StyleSheet.create({
   product: {
-    shadowColor: '#000000',
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
     height: 300,
     margin: 20,
+    padding: 0,
   },
   productImage: {
     height: 200,
     width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   header: {
     alignItems: 'center',
@@ -49,7 +46,7 @@ export default function Product({
   };
 
   return (
-    <View style={styles.product}>
+    <Box style={styles.product}>
       <Image
         source={{ uri: product.imageUrl }}
         style={styles.productImage}
@@ -72,6 +69,6 @@ export default function Product({
           />
         </View>
       </View>
-    </View>
+    </Box>
   );
 }
