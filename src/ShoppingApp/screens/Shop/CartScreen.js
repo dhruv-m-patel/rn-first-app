@@ -56,7 +56,7 @@ const CartScreen = ({
 
   return (
     <Screen>
-      {items.length
+      {Object.values(items).length
         ? (
           <View>
             <Box style={styles.summary}>
