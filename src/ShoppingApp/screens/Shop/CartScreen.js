@@ -56,27 +56,36 @@ const CartScreen = ({
 
   return (
     <Screen>
-      <Box style={styles.summary}>
-        <Text style={styles.summaryText}>
-          Total: <Text style={styles.amount}>${totalAmount.toFixed(2)}</Text>
-        </Text>
-        {!!Object.keys(items).length && (
-          <Button
-            title="Order Now"
-            onPress={handleCreateOrder}
-          />
-        )}
-      </Box>
-      <FlatList
-        data={Object.values(items)}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <CartItem
-            cartItem={item}
-            onRemoveItem={handleRemoveCartItem}
-          />
-        )}
-      />
+      {items.length
+        ? (
+          <View>
+            <Box style={styles.summary}>
+              <Text style={styles.summaryText}>
+                Total: <Text style={styles.amount}>${totalAmount.toFixed(2)}</Text>
+              </Text>
+              {!!Object.keys(items).length && (
+                <Button
+                  title="Order Now"
+                  onPress={handleCreateOrder}
+                />
+              )}
+            </Box>
+            <FlatList
+              data={Object.values(items)}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => (
+                <CartItem
+                  cartItem={item}
+                  onRemoveItem={handleRemoveCartItem}
+                />
+              )}
+            />
+          </View>
+        )
+        : (
+          <Text bold>There are no items currently in cart</Text>
+        )
+      }
     </Screen>
   );
 };

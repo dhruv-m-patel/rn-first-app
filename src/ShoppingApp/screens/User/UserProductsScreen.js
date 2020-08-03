@@ -1,9 +1,13 @@
 import React, { useCallback } from 'react';
-import { View, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Button, FlatList, Platform, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { removeProduct } from '../../store/actions/products';
 import Screen from '../../../common/components/Screen';
 import Product from '../../components/Product';
-import { removeProduct } from '../../store/actions/products';
+import Text from '../../../common/components/Text';
+import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
+import theme from '../../../common/theme';
 
 const styles = StyleSheet.create({
   product: {
@@ -53,24 +57,46 @@ const UserProductsScreen = ({
           }}
         />
       </View>
-      <FlatList
-        data={userProducts}
-        keyExtractor={p => p.id}
-        renderItem={({ item }) => (
-          <Product product={item} style={styles.product}>
-            <View style={styles.buttons}>
-            <Button title="Edit" onPress={() => { handleEditProduct(item.id); }} />
-            <Button title="Delete" onPress={() => { handleRemoveProduct(item.id); }} />
+      {userProducts.length
+        ? (
+          <FlatList
+            data={userProducts}
+            keyExtractor={p => p.id}
+            renderItem={({ item }) => (
+              <Product product={item} style={styles.product}>
+                <View style={styles.buttons}>
+                <Button title="Edit" onPress={() => { handleEditProduct(item.id); }} />
+                <Button title="Delete" onPress={() => { handleRemoveProduct(item.id); }} />
+              </View>
+              </Product>
+            )}
+          />
+        )
+        : (
+          <View style={{ alignItems: 'center', marginVertical: 20 }}>
+            <Text bold>You have no products on catalog.</Text>
           </View>
-          </Product>
-        )}
-      />
+        )
+      }
+
     </Screen>
   );
 }
 
 UserProductsScreen.navigationOptions = () => ({
   headerTitle: 'Your Products',
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
+      <Item
+        title="Drawer"
+        iconName="ios-menu"
+        color={Platform.OS === 'android' ? theme.color.accent : undefined}
+        onPress={() => {
+          navigation.toggleDrawer();
+        }}
+      />
+    </HeaderButtons>
+  ),
 });
 
 export default UserProductsScreen;
