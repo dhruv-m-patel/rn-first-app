@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Image, Button, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import {useSelector, useDispatch} from 'react-redux';
 import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
 import * as Data from '../../static/data.json';
-import {useSelector} from 'react-redux';
 import Screen from '../../../common/components/Screen';
 import Text from '../../../common/components/Text';
+import {addToCart} from '../../store/actions/cart';
 
 const styles = StyleSheet.create({
   image: {
@@ -27,6 +28,11 @@ const ProductDetailsScreen = ({ navigation }) => {
   const productId = navigation.getParam('productId');
   const { availableProducts } = useSelector(({ products }) => products);
   const product = availableProducts.find(p => p.id === productId);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = useCallback(() => {
+    dispatch(addToCart(product))
+  }, [dispatch, product]);
 
   return (
     <Screen>
@@ -35,7 +41,7 @@ const ProductDetailsScreen = ({ navigation }) => {
         style={styles.image}
       />
       <View style={styles.addToCartButton}>
-        <Button title="Add To Cart" onPress={() => {}} />
+        <Button title="Add To Cart" onPress={handleAddToCart} />
       </View>
       <View style={styles.productHeader}>
         <Text bold>{product.title}</Text>
@@ -61,7 +67,9 @@ ProductDetailsScreen.navigationOptions = ({
           iconName="ios-cart"
           color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={() => {
-            console.log('Add to cart')
+            navigation.navigate({
+              routeName: 'Cart',
+            });
           }}
         />
       </HeaderButtons>
