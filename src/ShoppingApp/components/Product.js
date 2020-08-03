@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Image, Button, StyleSheet } from 'react-native';
 import Text from '../../common/components/Text';
 import Box from '../../common/components/Box';
@@ -30,23 +30,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
+  details: {
+    paddingHorizontal: 15,
+  },
 });
 
 export default function Product({
   product,
   onAddToCart,
   onViewDetails,
+  children,
+  style: customStyle,
+  ...props
 }) {
-  const handleAddToCart = () => {
-    onAddToCart(product.id);
-  };
+  const [shouldShowDetails, setShouldShowDetails] = useState(false);
 
-  const handleViewDetails = () => {
-    onViewDetails(product.id);
-  };
+  const handleAddToCart = useCallback(() => {
+    onAddToCart(product.id);
+  }, [onAddToCart, product.id]);
+
+  const handleToggleDetails = useCallback(() => {
+    if (onViewDetails) {
+      onViewDetails(product.id);
+    } else {
+      setShouldShowDetails(!shouldShowDetails);
+    }
+  }, [onViewDetails, product.id, shouldShowDetails]);
 
   return (
-    <Box style={styles.product}>
+    <Box
+      style={{
+        ...styles.product,
+        ...customStyle,
+        ...shouldShowDetails && { height: styles.product.height + 100 }
+      }}
+      {...props}
+    >
       <Image
         source={{ uri: product.imageUrl }}
         style={styles.productImage}
@@ -55,20 +74,28 @@ export default function Product({
         <Text bold style={styles.productTitle}>{product.title}</Text>
         <Text style={styles.price}>{product.price}</Text>
       </View>
+      {shouldShowDetails && (
+        <View style={styles.details}>
+          <Text>{product.description}</Text>
+        </View>
+      )}
       <View style={styles.buttons}>
         <View style={styles.button}>
           <Button
-            title="View Details"
-            onPress={handleViewDetails}
+            title={shouldShowDetails ? 'Hide Details' : 'View Details'}
+            onPress={handleToggleDetails}
           />
         </View>
-        <View style={styles.button}>
-          <Button
-            title="Add to Cart"
-            onPress={handleAddToCart}
-          />
-        </View>
+        {!!onAddToCart && (
+          <View style={styles.button}>
+            <Button
+              title="Add to Cart"
+              onPress={handleAddToCart}
+            />
+          </View>
+        )}
       </View>
+      {children}
     </Box>
   );
 }
