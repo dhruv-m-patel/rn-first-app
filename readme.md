@@ -35,3 +35,13 @@ $ npm start
   - Displays different meal categories to choose from and then displays different meals in the selected category with final screen displaying recipe for the meal
   - Filters allow to see items from selected filters: gluten-free, vegan, vegetarian or lectose-free
   - Recipes can be marked as favorites and displayed separately on My Favorites tab
+
+- **The Shopping App**: A complex multi-screen app to showcase e-commerce functionality with multiple reducers.
+
+  - Stack, Drawer and Tab Navigation
+  - Multiple screens
+  - Multiple reducers and actions
+  - List products
+  - Add products to cart, show them on cart screen where they can be removed or order can be created
+  - Orders can be viewed from drawer or right after order creation with ability to cancel an existing order
+  - Allow adding or removing products on product catalog
