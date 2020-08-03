@@ -1,6 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import { View, Platform } from 'react-native';
+import { View, Platform, FlatList, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Screen from '../../common/components/Screen';
 import * as Data from '../static/data.json';
@@ -16,13 +15,13 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 16,
-  }
+  },
 });
 
 const CategoryCard = ({
   navigation,
   category,
- }) => (
+}) => (
   <Card
     onPress={() => {
       navigation.navigate({
@@ -32,7 +31,7 @@ const CategoryCard = ({
         },
       });
     }}
-    style={{ ...styles.card, backgroundColor: category.backgroundColor  }}
+    style={{ ...styles.card, backgroundColor: category.backgroundColor }}
   >
     <View>
       <Text
@@ -51,7 +50,7 @@ const CategoriesScreen = ({
   <Screen>
     <FlatList
       data={Data.categories}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <CategoryCard category={item} navigation={navigation} />
       )}
@@ -66,14 +65,14 @@ CategoriesScreen.navigationOptions = ({ navigation }) => ({
     <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
       <Item
         title="Menu"
-        iconName={'ios-menu'}
+        iconName="ios-menu"
         color={Platform.OS === 'android' ? theme.color.accent : undefined}
         onPress={() => {
           navigation.toggleDrawer();
         }}
       />
     </HeaderButtons>
-  )
+  ),
 });
 
 export default CategoriesScreen;

@@ -57,6 +57,6 @@ const CartItem = ({
       </View>
     </View>
   );
-}
+};
 
 export default CartItem;

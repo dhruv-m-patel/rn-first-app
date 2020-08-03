@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
-import { View, Image, Button, StyleSheet } from 'react-native';
+import { View, Image, Button, Platform, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
 import * as Data from '../../static/data.json';
 import Screen from '../../../common/components/Screen';
 import Text from '../../../common/components/Text';
-import {addToCart} from '../../store/actions/cart';
+import { addToCart } from '../../store/actions/cart';
+import theme from '../../../common/theme';
 
 const styles = StyleSheet.create({
   image: {
@@ -21,17 +22,17 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 14,
-  }
+  },
 });
 
 const ProductDetailsScreen = ({ navigation }) => {
   const productId = navigation.getParam('productId');
   const { availableProducts } = useSelector(({ products }) => products);
-  const product = availableProducts.find(p => p.id === productId);
+  const product = availableProducts.find((p) => p.id === productId);
   const dispatch = useDispatch();
 
   const handleAddToCart = useCallback(() => {
-    dispatch(addToCart(product))
+    dispatch(addToCart(product));
   }, [dispatch, product]);
 
   return (
@@ -50,13 +51,13 @@ const ProductDetailsScreen = ({ navigation }) => {
       <Text>{product.description}</Text>
     </Screen>
   );
-}
+};
 
 ProductDetailsScreen.navigationOptions = ({
   navigation,
 }) => {
   const productId = navigation.getParam('productId');
-  const product = Data.products.find(p => p.id === productId);
+  const product = Data.products.find((p) => p.id === productId);
 
   return {
     headerTitle: product.title,
@@ -75,6 +76,6 @@ ProductDetailsScreen.navigationOptions = ({
       </HeaderButtons>
     ),
   };
-}
+};
 
 export default ProductDetailsScreen;

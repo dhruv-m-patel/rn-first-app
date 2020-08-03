@@ -16,7 +16,7 @@ export const createOrder = ({
   },
 });
 
-export const cancelOrder = orderId => ({
+export const cancelOrder = (orderId) => ({
   type: OrderActions.CancelOrder,
   orderId,
 });

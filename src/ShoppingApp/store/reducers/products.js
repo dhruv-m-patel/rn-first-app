@@ -3,7 +3,7 @@ import { ProductActions } from '../actions/products';
 
 const initialState = {
   availableProducts: Data.products,
-  userProducts: Data.products.filter(p => p.ownerId === 'u1'),
+  userProducts: Data.products.filter((p) => p.ownerId === 'u1'),
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -11,8 +11,9 @@ export default function productsReducer(state = initialState, action) {
     case ProductActions.AddProduct:
       const newProduct = {
         ...action.product,
-        id: `p${state.availableProducts.length + 1}`
-      }
+        id: `p${state.availableProducts.length + 1}`,
+      };
+
       return {
         ...state,
         availableProducts: state.availableProducts.concat(newProduct),
@@ -20,13 +21,11 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case ProductActions.UpdateProduct:
-      const reduceProducts = products => products.reduce((result, product) => {
-        return result.concat(
-          product.id === action.product.productId
-            ? action.product
-            : product
-        );
-      }, []);
+      const reduceProducts = (products) => products.reduce((result, product) => result.concat(
+        product.id === action.product.productId
+          ? action.product
+          : product,
+      ), []);
 
       const updatedState = {
         ...state,
@@ -38,11 +37,11 @@ export default function productsReducer(state = initialState, action) {
     case ProductActions.RemoveProduct:
       return {
         ...state,
-        availableProducts: state.availableProducts.filter(p => p.id !== action.productId),
-        userProducts: state.userProducts.filter(p => p.id !== action.productId),
+        availableProducts: state.availableProducts.filter((p) => p.id !== action.productId),
+        userProducts: state.userProducts.filter((p) => p.id !== action.productId),
       };
 
     default:
       return state;
   }
-};
+}

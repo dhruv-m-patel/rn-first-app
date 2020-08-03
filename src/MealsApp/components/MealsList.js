@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   mealTags: {
     minHeight: 20,
-  }
+  },
 });
 
 const MealCard = ({
@@ -97,15 +97,18 @@ const MealCard = ({
 const MealsList = ({
   meals,
   onPress,
-}) => {
-  return meals.length
+}) => (
+  meals.length
     ? (
       <View style={styles.mealsList}>
         <FlatList
           data={meals}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <MealCard meal={item} onPress={onPress} />
+            <MealCard
+              meal={item}
+              onPress={onPress}
+            />
           )}
         />
       </View>
@@ -115,7 +118,7 @@ const MealsList = ({
         <Text bold>There are no meals to display.</Text>
         <Text>Update filters to view meals.</Text>
       </View>
-    );
-}
+    )
+);
 
 export default MealsList;

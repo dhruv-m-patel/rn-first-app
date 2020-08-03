@@ -62,7 +62,7 @@ export default function Product({
       style={{
         ...styles.product,
         ...customStyle,
-        ...shouldShowDetails && { height: styles.product.height + 100 }
+        ...shouldShowDetails && { height: styles.product.height + 100 },
       }}
       {...props}
     >

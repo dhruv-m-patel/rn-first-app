@@ -45,13 +45,13 @@ const NumberSelection = ({
   const [selectedNumber, setSelectedNumber] = useState();
   const [confirmed, setConfirmed] = useState(false);
 
-  const handleNumberInput = text => {
+  const handleNumberInput = (text) => {
     setEnteredNumber(text.replace(/[^0-9]/g, ''));
   };
 
   const handleConfirmNumber = () => {
     const chosenNumber = parseInt(enteredNumber, 10);
-    if (chosenNumber !== NaN && chosenNumber > 0 && chosenNumber <=99) {
+    if (!Number.isNaN(chosenNumber) && chosenNumber > 0 && chosenNumber <= 99) {
       setConfirmed(true);
       setSelectedNumber(chosenNumber);
     } else {
@@ -78,7 +78,7 @@ const NumberSelection = ({
 
   return (
     <TouchableWithoutFeedback
-      onPress={() => { Keyboard.dismiss() }}
+      onPress={() => { Keyboard.dismiss(); }}
     >
       <View>
         <AppHeader title="Start a New Game!" />
@@ -121,6 +121,6 @@ const NumberSelection = ({
       </View>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 export default NumberSelection;

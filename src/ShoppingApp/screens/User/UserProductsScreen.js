@@ -44,7 +44,7 @@ const UserProductsScreen = ({
 
   return (
     <Screen>
-       <View styles={styles.addProductButton}>
+      <View styles={styles.addProductButton}>
         <Button
           title="Add New Product"
           onPress={() => {
@@ -61,13 +61,13 @@ const UserProductsScreen = ({
         ? (
           <FlatList
             data={userProducts}
-            keyExtractor={p => p.id}
+            keyExtractor={(p) => p.id}
             renderItem={({ item }) => (
               <Product product={item} style={styles.product}>
                 <View style={styles.buttons}>
-                <Button title="Edit" onPress={() => { handleEditProduct(item.id); }} />
-                <Button title="Delete" onPress={() => { handleRemoveProduct(item.id); }} />
-              </View>
+                  <Button title="Edit" onPress={() => { handleEditProduct(item.id); }} />
+                  <Button title="Delete" onPress={() => { handleRemoveProduct(item.id); }} />
+                </View>
               </Product>
             )}
           />
@@ -81,9 +81,9 @@ const UserProductsScreen = ({
 
     </Screen>
   );
-}
+};
 
-UserProductsScreen.navigationOptions = () => ({
+UserProductsScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Your Products',
   headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>

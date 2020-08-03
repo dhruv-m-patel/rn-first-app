@@ -99,7 +99,7 @@ FiltersScreen.navigationOptions = ({ navigation }) => {
       <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
         <Item
           title="Menu"
-          iconName={'ios-menu'}
+          iconName="ios-menu"
           color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={() => {
             navigation.toggleDrawer();
@@ -111,12 +111,12 @@ FiltersScreen.navigationOptions = ({ navigation }) => {
       <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
         <Item
           title="Save"
-          iconName={'ios-save'}
+          iconName="ios-save"
           color={Platform.OS === 'android' ? theme.color.accent : undefined}
           onPress={updateCurrentFilters}
         />
       </HeaderButtons>
-    )
+    ),
   });
 };
 
@@ -129,9 +129,8 @@ function mapStateToProps({ meals }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveFilters: filters => dispatch(updateFilters(filters)),
+    saveFilters: (filters) => dispatch(updateFilters(filters)),
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltersScreen);

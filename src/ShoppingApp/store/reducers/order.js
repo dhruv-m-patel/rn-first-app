@@ -18,7 +18,7 @@ export default function orderReducer(state = initialState, action) {
     case OrderActions.CancelOrder:
       return {
         ...state,
-        orders: state.orders.filter(o => o.orderId !== action.orderId),
+        orders: state.orders.filter((o) => o.orderId !== action.orderId),
       };
 
     default:

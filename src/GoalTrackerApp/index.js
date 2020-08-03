@@ -12,7 +12,7 @@ export default function GoalTrackerApp() {
   const [shouldShouldAddGoal, setShouldShowAddGoal] = useState(false);
 
   const handleAddGoal = (goal) => {
-    setGoals(currentGoals => [
+    setGoals((currentGoals) => [
       ...currentGoals,
       {
         id: (currentGoals.length + 1).toString(),
@@ -23,7 +23,7 @@ export default function GoalTrackerApp() {
   };
 
   const handleDeleteGoal = (goalId) => {
-    setGoals(currentGoals => currentGoals.filter(goal => goal.id !== goalId));
+    setGoals((currentGoals) => currentGoals.filter((goal) => goal.id !== goalId));
   };
 
   const onAddGoal = () => {

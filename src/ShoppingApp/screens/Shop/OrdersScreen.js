@@ -17,7 +17,7 @@ const OrdersScreen = () => {
         ? (
           <FlatList
             data={orders}
-            keyExtractor={item => item.orderId}
+            keyExtractor={(item) => item.orderId}
             renderItem={({ item }) => (
               <OrderItem order={item} />
             )}
@@ -29,7 +29,7 @@ const OrdersScreen = () => {
       }
     </Screen>
   );
-}
+};
 
 OrdersScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Current Orders',

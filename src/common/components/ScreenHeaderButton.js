@@ -4,7 +4,7 @@ import { HeaderButton } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
 import theme from '../theme';
 
-const ScreenHeaderButton = props => (
+const ScreenHeaderButton = (props) => (
   <HeaderButton
     IconComponent={Ionicons}
     iconSize={23}

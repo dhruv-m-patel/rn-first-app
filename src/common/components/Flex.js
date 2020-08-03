@@ -22,7 +22,8 @@ const Flex = ({
 const FlexContent = ({
   style: customStyle,
   width,
-  ...props }) => (
+  ...props
+}) => (
   <View
     style={{ ...customStyle, width }}
     {...props}

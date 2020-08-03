@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
   },
-})
+});
 
 export default function GuessTheNumberApp() {
   const [selectedNumber, setSelectedNumber] = useState(undefined);
   const [endGame, setEndGame] = useState(false);
   const [totalRounds, setTotalRounds] = useState(0);
 
-  const handleNumberSelection = num => {
+  const handleNumberSelection = (num) => {
     setSelectedNumber(num);
   };
 
@@ -23,7 +23,7 @@ export default function GuessTheNumberApp() {
     setSelectedNumber(undefined);
   };
 
-  const handleGameOver = rounds => {
+  const handleGameOver = (rounds) => {
     setTotalRounds(rounds);
     setEndGame(true);
   };

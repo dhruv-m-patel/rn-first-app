@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
 });
 
 const loadCustomFonts = async () => loadAsync({
+  // eslint-disable-next-line global-require
   'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+  // eslint-disable-next-line global-require
   'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
 });
 
@@ -42,10 +44,10 @@ export default function App() {
   };
 
   const handleAppLoadingError = () => {
+    // eslint-disable-next-line no-undef
     Alert.alert('Error', 'Loading custom fonts failed');
     setHasInitialized(true);
   };
-
 
   const CurrentApp = hasInitialized && !!appName && APPS[appName];
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { default as CommonCard } from '../../common/components/Card';
+import CardComponent from '../../common/components/Card';
 
 const styles = StyleSheet.create({
   card: {
@@ -23,9 +23,9 @@ const Card = ({
     style={styles.card}
     onPress={onPress}
   >
-    <CommonCard style={{ ...styles.category, ...customStyle }} {...props}>
+    <CardComponent style={{ ...styles.category, ...customStyle }} {...props}>
       {children}
-    </CommonCard>
+    </CardComponent>
   </TouchableOpacity>
 );
 

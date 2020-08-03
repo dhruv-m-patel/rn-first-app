@@ -38,16 +38,16 @@ const RecipeScreen = ({
   const dispatch = useDispatch();
 
   const mealId = navigation.getParam('mealId');
-  const recipe = filteredMeals.find(m => m.id === mealId);
+  const recipe = filteredMeals.find((m) => m.id === mealId);
 
-  const updateFavorite =  useCallback(() => {
+  const updateFavorite = useCallback(() => {
     dispatch(updateFavorites(mealId));
   }, [dispatch, mealId]);
 
   useEffect(() => {
     navigation.setParams({
       saveFavorites: updateFavorite,
-      isFavorite: !favoriteMeals.find(m => m.id === mealId),
+      isFavorite: !favoriteMeals.find((m) => m.id === mealId),
     });
   }, [updateFavorite, favoriteMeals, mealId]);
 
@@ -78,38 +78,42 @@ const RecipeScreen = ({
           <Text style={styles.recipeDetailText}><Text bold>Time:</Text> {recipe.duration}m</Text>
         </View>
         <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}><Text bold>Complexity:</Text> {recipe.complexity}</Text>
+          <Text style={styles.recipeDetailText}>
+            <Text bold>Complexity:</Text> {recipe.complexity}
+          </Text>
         </View>
         <View style={styles.recipeDetailRow}>
-          <Text style={styles.recipeDetailText}><Text bold>Affordability:</Text> {recipe.affordability}</Text>
+          <Text style={styles.recipeDetailText}>
+            <Text bold>Affordability:</Text> {recipe.affordability}
+          </Text>
         </View>
         <View style={styles.recipeDetailRow}>
           <Text bold>Ingredients</Text>
-          {recipe.ingredients.map(i => (
+          {recipe.ingredients.map((i) => (
             <Text key={i} style={styles.recipeDetailText}>- {i}</Text>
           ))}
         </View>
         <View style={styles.recipeDetailRow}>
           <Text bold>Instructions</Text>
-          {recipe.steps.map(i => (
+          {recipe.steps.map((i) => (
             <Text key={i} style={styles.recipeDetailText}>- {i}</Text>
           ))}
         </View>
       </ScrollView>
     </Screen>
   );
-}
+};
 
 RecipeScreen.navigationOptions = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
-  const recipe = Data.meals.find(m => m.id === mealId);
+  const recipe = Data.meals.find((m) => m.id === mealId);
 
   const isFavorite = navigation.getParam('isFavorite');
   const saveFavorites = navigation.getParam('saveFavorites');
 
   return {
     headerTitle: recipe.title,
-    headerRight: ()  => (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={ScreenHeaderButton}>
         <Item
           title="Favorite"

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
-  }
+  },
 });
 
 const GoalInput = ({
@@ -70,6 +70,6 @@ const GoalInput = ({
       </Flex.Content>
     </Flex>
   );
-}
+};
 
 export default GoalInput;

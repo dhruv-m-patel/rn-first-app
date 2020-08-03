@@ -24,7 +24,7 @@ const appNavigationOptions = {
 const mainNavigatorScreens = {
   Categories: CategoriesScreen,
   Meals: MealsScreen,
-  Recipe: RecipeScreen
+  Recipe: RecipeScreen,
 };
 
 const favoritesNavigatorScreens = {
@@ -41,7 +41,7 @@ const tabNavigatorScreens = {
     screen: screenNavigator,
     navigationOptions: {
       tabBarLabel: 'Menu',
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <Ionicons
           name="ios-restaurant"
           size={25}
@@ -54,7 +54,7 @@ const tabNavigatorScreens = {
     screen: favoritesNavigator,
     navigationOptions: {
       tabBarLabel: 'My Favorites',
-      tabBarIcon: tabInfo => (
+      tabBarIcon: (tabInfo) => (
         <Ionicons
           name="ios-star"
           size={25}
