@@ -22,8 +22,8 @@ export default function productsReducer(state = initialState, action) {
     case ProductActions.RemoveProduct:
       return {
         ...state,
-        availlableProducts: state.availableProducts.filter(p => p !== action.productId),
-        userProducts: state.userProducts.filter(p => p !== action.productId),
+        availlableProducts: state.availableProducts.filter(p => p.id !== action.productId),
+        userProducts: state.userProducts.filter(p => p.id !== action.productId),
       };
 
     default:

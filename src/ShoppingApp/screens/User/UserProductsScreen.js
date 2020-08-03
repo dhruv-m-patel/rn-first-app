@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Button, FlatList, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Screen from '../../../common/components/Screen';
@@ -22,18 +22,18 @@ const UserProductsScreen = ({
   const { userProducts } = useSelector(({ products }) => products);
   const dispatch = useDispatch();
 
-  const handleEditProduct = (productId) => {
+  const handleEditProduct = useCallback((productId) => {
     navigation.navigate({
-      routeName: 'EditProductDetails',
+      routeName: 'EditProduct',
       params: {
         productId,
       },
     });
-  };
+  }, [navigation]);
 
-  const handleRemoveProduct = (productId) => {
+  const handleRemoveProduct = useCallback((productId) => {
     dispatch(removeProduct(productId));
-  };
+  }, [dispatch]);
 
   return (
     <Screen>
