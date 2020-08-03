@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Button, FlatList, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Text from '../../common/components/Text';
 import Box from '../../common/components/Box';
 import { toReadableDate } from '../../lib/utils';
 import CartItem from './CartItem';
+import { cancelOrder } from '../store/actions/order';
 
 
 const styles = StyleSheet.create({
@@ -26,10 +28,16 @@ const OrderItem = ({
   order,
 }) => {
   const [shouldShowDetails, setShouldShowDetails] = useState(false);
+  const dispatch = useDispatch();
 
   const handleToggleDetails = () => {
     setShouldShowDetails(!shouldShowDetails);
-  }
+  };
+
+  const handleCancelOrder = useCallback(() => {
+    dispatch(cancelOrder(order.orderId));
+  }, [dispatch, order.orderId]);
+
   return (
     <Box style={styles.orderItem}>
       <View style={styles.summary}>
@@ -45,9 +53,16 @@ const OrderItem = ({
           )}
         />
       )}
+      <View style={styles.button}>
+        <Button
+          title={shouldShowDetails ? 'Hide Details' : 'Show Details'}
+          onPress={handleToggleDetails}
+        />
+      </View>
       <Button
-        title={shouldShowDetails ? 'Hide Details' : 'Show Details'}
-        onPress={handleToggleDetails}
+        color="red"
+        title="Cancel This Order"
+        onPress={handleCancelOrder}
       />
     </Box>
   );
