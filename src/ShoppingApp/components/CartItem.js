@@ -30,7 +30,6 @@ const CartItem = ({
   cartItem,
   onRemoveItem,
 }) => {
-  console.log('cartItem: ', cartItem);
   const handleRemoveItem = () => {
     onRemoveItem(cartItem.id);
   };
