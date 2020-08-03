@@ -43,16 +43,18 @@ const CartItem = ({
       </View>
       <View style={styles.cartItemRow}>
         <Text>${cartItem.quantity * cartItem.price}</Text>
-        <TouchableOpacity
-          onPress={handleRemoveItem}
-          style={styles.deleteButton}
-        >
-          <Ionicons
-            name="ios-trash"
-            size={23}
-            color="red"
-          />
-        </TouchableOpacity>
+        {!!onRemoveItem && (
+          <TouchableOpacity
+            onPress={handleRemoveItem}
+            style={styles.deleteButton}
+          >
+            <Ionicons
+              name="ios-trash"
+              size={23}
+              color="red"
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
