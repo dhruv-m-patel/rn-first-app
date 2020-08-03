@@ -58,7 +58,7 @@ const CartScreen = ({
     <Screen>
       <Box style={styles.summary}>
         <Text style={styles.summaryText}>
-          Total: <Text style={styles.amount}>${totalAmount}</Text>
+          Total: <Text style={styles.amount}>${totalAmount.toFixed(2)}</Text>
         </Text>
         {!!Object.keys(items).length && (
           <Button
