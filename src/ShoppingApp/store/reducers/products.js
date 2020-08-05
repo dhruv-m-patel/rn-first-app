@@ -1,13 +1,21 @@
-import * as Data from '../../static/data.json';
 import { ProductActions } from '../actions/products';
 
 const initialState = {
-  availableProducts: Data.products,
-  userProducts: Data.products.filter((p) => p.ownerId === 'u1'),
+  availableProducts: undefined,
+  userProducts: undefined,
+  isFetchingProducts: false,
+  error: undefined,
 };
 
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
+    case ProductActions.FetchProducts:
+      return {
+        ...state,
+        availableProducts: action.products,
+        userProducts: action.products?.filter((p) => p.ownerId === 'u1'),
+      };
+
     case ProductActions.AddProduct:
       const newProduct = {
         ...action.product,

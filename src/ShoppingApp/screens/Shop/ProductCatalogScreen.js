@@ -7,11 +7,12 @@ import Product from '../../components/Product';
 import Screen from '../../../common/components/Screen';
 import ScreenHeaderButton from '../../../common/components/ScreenHeaderButton';
 import theme from '../../../common/theme';
+import { fetchProducts } from '../../store/actions/products';
 
 const ProductCatalogScreen = ({
   navigation,
 }) => {
-  const { availableProducts } = useSelector(({ products }) => products);
+  const { availableProducts, isFetchingProducts, error } = useSelector(({ products }) => products);
   const { items: cartItems } = useSelector(({ cart }) => cart);
   const dispatch = useDispatch();
 
@@ -24,6 +25,12 @@ const ProductCatalogScreen = ({
       cartItems,
     });
   }, [cartItems]);
+
+  useEffect(() => {
+    if (!availableProducts && !isFetchingProducts && !error) {
+      dispatch(fetchProducts());
+    }
+  }, [availableProducts, isFetchingProducts, error, dispatch]);
 
   return (
     <Screen>

@@ -3,12 +3,12 @@ export const CartActions = {
   RemoveItem: 'RemoveItem',
 };
 
-export const addToCart = (product) => ({
+export const addToCart = (product) => (dispatch) => dispatch({
   type: CartActions.AddItem,
   product,
 });
 
-export const removeFromCart = (product) => ({
+export const removeFromCart = (product) => (dispatch) => dispatch({
   type: CartActions.RemoveItem,
   product,
 });

@@ -7,7 +7,7 @@ export const createOrder = ({
   timestamp,
   items,
   totalAmount,
-}) => ({
+}) => (dispatch) => dispatch({
   type: OrderActions.CreateOrder,
   order: {
     timestamp,
@@ -16,7 +16,7 @@ export const createOrder = ({
   },
 });
 
-export const cancelOrder = (orderId) => ({
+export const cancelOrder = (orderId) => (dispatch) => dispatch({
   type: OrderActions.CancelOrder,
   orderId,
 });
